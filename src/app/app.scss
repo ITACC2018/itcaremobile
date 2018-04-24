@@ -1,0 +1,95 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #F5F5F5;
+	border-radius: 8px;
+}
+
+::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 8px;
+    background-color: #FFF;
+    background-image: -webkit-linear-gradient(top, #e4f5fc 0%, #bfe8f9 50%, #b5e0f1 51%, #9aa2d0 100%);
+}
+
+.toolbar-background-md {
+    border-color: #b2b2b2;
+    background: #3F51B5;
+}
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+    color: #3F51B5;
+    -webkit-transform: translate3d(0, -2px, 0);
+    transform: translate3d(0, -2px, 0);
+}
+.tabs-md .tab-button[aria-selected=true] {
+    color: #3F51B5;
+    padding: 0;
+}
+
+//select search
+.select-searchable-page .content .scroll-content .list .item .item-inner .input-wrapper .label-md h2 {
+    margin: 2px 0;
+    font-size: 10px;
+    font-weight: normal;
+}
+
+ion-list.list.list-md .item-md .item-inner {
+    margin-left: 0px;
+}
+
+
+.title-centered .toolbar-content {
+    order: 4;
+    // Make sure the toolbar buttons are above the title or they can't be tapped!
+    z-index: -1;
+  }
+  
+.title-centered ion-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 50px 1px;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+  
+.title-centered .toolbar-title {
+    text-align: center;
+    padding: 0;
+}
+.toast-md .toast-message {
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: center;
+    padding: 19px 16px 17px;
+}
+ion-card-header.card-header.card-header-md {
+    white-space: normal;
+}
+ion-card-content.card-content.card-content-md ul {
+    padding-left: 17px;
+}

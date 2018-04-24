@@ -1,0 +1,51 @@
+page-detail-help-answer-question {
+    ion-content {
+        background: linear-gradient(0deg, #eeeef1 0%, white 80%, white 100%);
+      }
+      ion-label.label.label-md {
+        white-space: normal;
+        font-size: 13px;
+        text-align: left;
+    }
+    ion-card-header {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        font-weight: bold;
+    }
+    ion-card-header.card-header.card-header-md {
+        white-space: normal;
+    }
+    ion-card-content.card-content.card-content-md ul {
+        padding-left: 17px;
+    }
+    .spinner-container {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+    .card-content-md {
+        padding: 0px;
+        font-size: 1.4rem;
+        line-height: 1.5;
+    }
+    .card-content-md ul{
+        margin-left: -3px;
+    }
+    .item-md {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .item-inner{
+        text-align: center;
+    }
+
+    ion-card-content.card-content.card-content-md {
+        padding: 17px;
+    }
+    page-detail-help-answer-question ion-card-content.card-content.card-content-md ul {
+        padding-left: 26px;
+    }
+
+}

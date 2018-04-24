@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+     Chatbot
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <ion-list-header>
+        Bot Conversations
+      </ion-list-header>
+
+      <ion-item navPush="Chat" [navParams]="toUser">
+        <ion-avatar item-start>
+          <img src="./assets/robot.jpg">
+        </ion-avatar>
+        <h2>Mr Accbot</h2>
+        <p>talk less do more</p>
+      </ion-item>
+  
+    </ion-list>
+  
+    <ion-list *ngIf="itAps">
+      <ion-list-header>
+        Warning Chatbot
+      </ion-list-header>
+
+      <ion-item *ngFor="let item of items | async">
+          <ion-avatar item-start>
+            <img src="{{item.userAvatar}}">
+          </ion-avatar>
+          <h2>{{item.senderName}}</h2>
+          <p>{{item.message}}</p>
+          <button ion-button clear item-end (click)="doConfirm(item)">Reply</button>
+        </ion-item>
+  
+    </ion-list>
+</ion-content>

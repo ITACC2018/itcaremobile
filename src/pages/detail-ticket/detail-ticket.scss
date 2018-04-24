@@ -1,0 +1,33 @@
+page-detail-ticket {
+    ion-card.cards-list-demo ion-card-header {
+        color: map-get($colors, primary);
+        background-color: #e0e5ff;
+    }
+    // .item-md{
+    //     padding-left: 0px;
+    // }
+    .label-md {
+         margin: 0; 
+    }
+    ion-list.list.list-md {
+        padding-left: 22px;
+    }
+    ion-list.list.list-md .item-md .item-inner {
+        margin-left: 0px;
+        margin-right: 27px;
+    }
+    span {
+        font-size: 12px;
+    }
+    .col {
+        padding: 0px;
+    }
+    .item-md {
+        padding-left: 0px; 
+    }
+    .card-header-md {
+        font-size: 1.6rem;
+        color: #222;
+        padding: 6px;
+    }
+}

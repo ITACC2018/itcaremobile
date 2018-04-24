@@ -1,0 +1,42 @@
+
+<ion-header class="title-centered">
+  <ion-navbar>
+    <ion-title>Have a Question ?</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+ 
+  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+
+  <div *ngIf="searching" class="spinner-container">
+      <ion-spinner></ion-spinner>
+  </div>
+
+  <ion-list *ngIf="contentAnswer">
+      <ion-item *ngFor="let item of items" (click)="answerFaq(item)">
+          {{item.text_label}}
+          <button (click)="answerFaq(item)" ion-button clear item-end>
+            <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+          </button>
+      </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="listSearching">
+      <ion-item *ngFor="let items of itemsSearch" (click)="answerQuestion(items)">
+          {{items.text_label}}
+          <button (click)="answerQuestion(items)" ion-button clear item-end>
+            <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+          </button>
+      </ion-item>
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab color="primary-button" (click)="pushToChatbot()">
+      <ion-icon ios="ios-ionitron-outline" md="md-ionitron"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

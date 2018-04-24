@@ -1,0 +1,150 @@
+<!--
+  Generated template for the DetailTicketPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="title-centered">
+
+  <ion-navbar>
+	<ion-title>Ticket Detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="cards-bg">
+
+	<ion-card class="cards-list-demo">
+	  <ion-card-header>
+		Ticket Detail  {{idTicket}}
+	  </ion-card-header>
+      <!-- https://stackoverflow.com/questions/42057594/ionic-2-cannot-read-object-property-in-view -->
+	</ion-card>
+
+
+    <ion-list>
+        <ion-row>
+          <ion-col col-3>
+            <div><span>Category</span> </div>
+          </ion-col>
+          <ion-col col-1>
+            <div><span>:</span></div>
+          </ion-col>
+          <ion-col>
+            <div><span>{{detailTicket?.category}}</span></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row>
+          <ion-col col-3>
+            <div></div>
+          </ion-col>
+          <ion-col col-1>
+            <div></div>
+          </ion-col>
+          <ion-col>
+            <div><span>{{detailTicket?.sub_category}}</span></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row>
+          <ion-col col-3>
+            <div></div>
+          </ion-col>
+          <ion-col col-1>
+            <div></div>
+          </ion-col>
+          <ion-col>
+            <div><span>{{detailTicket?.sub_sub_category}}</span></div>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row>
+          <ion-col col-3>
+            <div></div>
+          </ion-col>
+          <ion-col col-1>
+            <div></div>
+          </ion-col>
+          <ion-col>
+            <div><span>{{detailTicket?.sub_sub_sub_category}}</span></div>
+          </ion-col>
+        </ion-row>
+
+		<ion-row>
+			<ion-col col-3>
+			  <div><span>Description</span></div>
+			</ion-col>
+			<ion-col col-1>
+			  <div><span>:</span></div>
+			</ion-col>
+			<ion-col>
+				<div><span>{{detailTicket?.description}}</span></div>
+			  </ion-col>
+		  </ion-row>
+
+		<ion-row>
+			<ion-col col-3>
+				<div><span>Celler</span></div>
+			</ion-col>
+			<ion-col col-1>
+				<div><span>:</span></div>
+			</ion-col>
+			<ion-col>
+				<div><span>{{detailTicket?.request_by}}</span></div>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col col-3>
+				<div><span>Celler Phone</span></div>
+			</ion-col>
+			<ion-col col-1>
+				<div><span>:</span></div>
+			</ion-col>
+			<ion-col>
+				<div><span>{{detailTicket?.phone_number}}</span></div>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col col-3>
+				<div><span>Extension</span></div>
+			</ion-col>
+			<ion-col col-1>
+				<div><span>:</span></div>
+			</ion-col>
+			<ion-col>
+				<div><span>{{detailTicket?.extension}}</span></div>
+			</ion-col>
+		</ion-row>
+	</ion-list>
+
+	<ion-card class="cards-list-demo">
+		<ion-card-header>
+		  Approval List
+		</ion-card-header>
+	</ion-card>
+
+	<ion-list>
+		<ion-item *ngIf="detailApproval?.length === 0">
+			<ion-avatar item-start>
+				<img src="./assets/imgs/waiting.png">
+			</ion-avatar>
+			<span>Please Waiting Approval </span>
+		</ion-item>
+
+		<ion-item *ngFor="let approval of detailApproval" >
+			<ion-avatar item-start>
+				<img src="./assets/imgs/users.png">
+			</ion-avatar>
+			<h2>{{approval?.response_by}}</h2>
+			<p>Created at: {{approval?.response_time}}</p>
+			<p>Status : {{approval?.code}}</p>
+			<p *ngIf="approval?.response_description !== null">Desc : {{approval?.response_description}}</p>
+		</ion-item>
+	</ion-list>
+  
+  </ion-content>
+
