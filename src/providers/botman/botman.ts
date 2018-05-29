@@ -10,8 +10,8 @@ import 'rxjs/add/operator/map';
 	and Angular DI.
 */
 
-let apiUrl = 'https://heroku-ardyanto89.herokuapp.com/botman';
-//let apiUrl = 'https://badeae02.ap.ngrok.io/botman';
+let apiUrl = 'https://young-caverns-76262.herokuapp.com/botman';
+//let apiUrl = 'http://6b52204a.ap.ngrok.io//botman';
 
 @Injectable()
 export class BotmanProvider {

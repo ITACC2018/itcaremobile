@@ -50,6 +50,7 @@ page-detail-approval {
         font-size: 10px;
     }
 
+
     .item-md.item-input.item-input-has-focus .item-inner, .item-md.item-input.input-has-focus .item-inner {
         border-bottom-color: #dedede;
         -webkit-box-shadow: inset 0 -1px 0 0 #dedede;
@@ -77,5 +78,14 @@ page-detail-approval {
         border-bottom-color: #dedede;
         -webkit-box-shadow: inset 0 -1px 0 0 #dedede;
         box-shadow: inset 0 -1px 0 0 #dedede;
+    }
+
+    .icon-itcare {
+        display: inline-block;
+        font-size: 3.8em;
+        color: #8fb2d6;
+    }
+    .label-md[stacked] {
+        font-size: 1.5rem;
     }
 }

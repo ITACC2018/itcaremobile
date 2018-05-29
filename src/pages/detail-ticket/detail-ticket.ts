@@ -13,6 +13,8 @@ export class DetailTicketPage {
 	detailTicket: any;
 	detailApproval: any;
 	errorMessage: string;
+	loadingStatus = true;
+	loading: any;
 
 	constructor(
 		public navCtrl: NavController,
@@ -20,6 +22,7 @@ export class DetailTicketPage {
 		public CoaKategoriProvider: CoaKategoriProvider,
 		public loadingCtrl: LoadingController
 	) {
+		this.createLoading('Please wait ..');
 		this.idTicket = navParams.get("idTicket");
 		this.getDetailTicketById(this.idTicket);
 		
@@ -30,18 +33,22 @@ export class DetailTicketPage {
 		//console.log('ionViewDidLoad');
 	}
 
+	ionViewDidLeave() : void
+	{
+		this.loading.dismiss();
+		this.createLoading('Please wait ..');
+	}
+
 	getDetailTicketById(idTicket) {
-		let loading = this.loadingCtrl.create({
-			content: 'Please wait...'
-		});
-		loading.present();
+		this.loading.present();
 		this.CoaKategoriProvider.getDetailTik(idTicket)
 		.subscribe((res : any) => {
 				this.detailTicket = res.detailTicket;
 				this.detailApproval = res.detailApproval;
-				loading.dismiss();
+				this.loadingStatus = false;
+				this.loading.dismiss();
 			},(error : any) =>{
-				loading.dismiss();
+				this.loading.dismiss();
 				error =>  this.errorMessage = <any>error
 			});
 	}
@@ -50,5 +57,13 @@ export class DetailTicketPage {
 		console.log("popping");
 		this.navCtrl.pop();
 	}
+
+	createLoading(text) {
+		this.loading = this.loadingCtrl.create({
+			content: text,
+			cssClass: 'detail-approval-loading'
+		});
+	}
+
 
 }

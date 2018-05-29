@@ -44,10 +44,6 @@ export class CoaKategoriProvider {
 	getKategoriData() : Observable<Coa[]>  {
 		return this.http.get(this.baseURI+"coa")
 		.map(res => res.json()).map(data => {
-			// var result = [];
-			// for(let obj of data.result){
-			//   result.push(obj.id);
-			// }
 			return data;
 		});
 	}

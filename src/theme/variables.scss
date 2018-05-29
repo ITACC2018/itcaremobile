@@ -50,6 +50,9 @@ $colors: (
   primary-button: #3F51B5
 );
 $toolbar-background: color($colors, primary);
+$toast-ios-background:(#3F51B5);
+$toast-md-background:(#3F51B5);
+$toast-wp-background:(#3F51B5);
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

@@ -29,6 +29,7 @@ export class DetailHelpAnswerPage {
   listSearching: any = false;
   toUser : {sender: string, toUserName: string, typeChat: string};
   sub_sub_category_id: string;
+  loadingContent = true;
 
   constructor(
     public dataService: HelpCategoryProvider,
@@ -76,18 +77,19 @@ export class DetailHelpAnswerPage {
   }
 
   setFilteredItems(sub_sub_category_id, type) {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    if(type == 'loading'){
-      loading.present();
-    }
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...'
+    // });
+    // if(type == 'loading'){
+    //   loading.present();
+    // }
     return this.dataService.getSubSubDataHelpCategory(sub_sub_category_id).subscribe(res => {
       if(res){
         this.items = res;
-        if(type == 'loading'){
-          loading.dismiss();
-        }
+        this.loadingContent = false;
+        // if(type == 'loading'){
+        //   loading.dismiss();
+        // }
       }
     });
 }

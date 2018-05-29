@@ -1,13 +1,16 @@
 page-home {
     ion-content {
         background: linear-gradient(0deg, #eeeef1 0%, white 80%, white 100%);
-      }
+    }
+    .has-refresher > .scroll-content {
+        background: linear-gradient(0deg, #eeeef1 0%, white 80%, white 100%);
+    }
     ion-list {
         margin: 0;
         padding: 0;
         display: block;
         list-style-type: none;
-        border-bottom: solid 1px;
+        border-bottom: solid 0px;
         border-bottom-color: #c8cde8;
     }
     .list-md {
@@ -37,7 +40,7 @@ page-home {
     .card-title-md {
         margin: 0px 0;
         padding: 0px 0;
-      
+        font-size: 1.8rem;
     }
     .card-md p {
         font-size: 1.3rem;
@@ -61,26 +64,8 @@ page-home {
         margin: 0 0 0 0;
     }
 
-    // .card-background-page {
-    //     ion-card {
-    //       position: relative;
-    //       text-align: left;
-    //     }
-    //     .card-title {
-    //       position: absolute;
-    //       font-size: 1.8em;
-    //       width: 100%;
-    //       font-weight: bold;
-    //       color: #fff;
-    //       margin-left: 5px;
-    //     }
-    //     .card-subtitle {
-    //       font-size: 1.1em;
-    //       position: absolute;
-    //       top: 92%;
-    //       width: 100%;
-    //       color: #fff;
-    //       margin-left: 5px;
-    //     }
-    // }
+    .has-refresher > .scroll-content {
+        border-top: 0px solid #ddd; 
+    }
+
 }

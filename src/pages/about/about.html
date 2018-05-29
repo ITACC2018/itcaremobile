@@ -18,11 +18,16 @@
   
 <ion-content >
 	<div [ngSwitch]="pet">
+		<ion-refresher *ngSwitchCase="'puppies'" (ionRefresh)="doRefreshCoa($event)">
+				<ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="ios">
+				</ion-refresher-content>
+		</ion-refresher>
+	
+		<ion-refresher *ngSwitchCase="'kittens'" (ionRefresh)="doRefreshTracking($event)" class="refresher-container">
+			<ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="ios">
+			</ion-refresher-content>
+		</ion-refresher>
 		<ion-list *ngSwitchCase="'puppies'">
-			<!-- <ion-list-header>
-				<ion-label color="primary-button"><b>Request ITcare </b></ion-label>
-			</ion-list-header> -->
-
 			<form [formGroup]="form" (ngSubmit)="saveTicket(form)">
 				<ion-item-group>
 					<ion-label color="primary" stacked>Kategori</ion-label>
@@ -100,17 +105,6 @@
 					</div>
 				</ng-container>
 
-				<!-- <ng-container formArrayName="addresses" no-lines>
-					<div *ngFor="let address of form.controls.addresses.controls; let i=index">
-						<div [formGroupName]="i">
-						<ion-item>
-								<ion-label stacked>{{address}} {{ i + 1 }}</ion-label>
-								<ion-input type="text" formControlName="street" placeholder="Elmstreet"></ion-input>
-							</ion-item> 
-						</div>
-					</div>
-				</ng-container>  -->
-
 	
 				<ion-item [ngClass]="displayFieldCss('description')">
 					<ion-label color="primary" stacked>Deskripsi</ion-label>
@@ -129,20 +123,32 @@
 			</form>
 		</ion-list>
 
-		<ion-list *ngSwitchCase="'kittens'" style="height:100%;"> 
-			
-			<!-- <ion-list-header>
-				<ion-label color="primary-button"><b>Tracking ITcare </b></ion-label>
-			</ion-list-header> -->
-			<!-- <div [formGroup]="myGroup" style="display:none;">
-				<input formControlName="firstName">
-			</div> -->		
-				
-			<ion-list>
+		<ion-list *ngSwitchCase="'kittens'" > 	
+
+			<div *ngIf="loadingContent" class="spinner-container">
+				<ion-spinner name="ios"></ion-spinner>
+			</div>
+
+			<ion-card *ngIf="totalData === 0 && loadingContent === false">
+				<img-loader src="assets/img/etc/404.png" useImg></img-loader>
+				<ion-card-content>
+					<ion-card-title>
+						Kamu tidak mempunyai list ticket
+					</ion-card-title>
+				</ion-card-content>
+			</ion-card>
+
+			<ion-list *ngIf="loadingContent === false">
 				<ion-item *ngFor="let ticket of trackingList" (click)="pushDetailTicket(ticket)">
 					<ion-avatar item-start>
-						<ion-icon *ngIf="ticket.code == 'Closed' || ticket.code == 'Open'"  md="ios-checkmark-circle-outline"></ion-icon>
-						<ion-icon *ngIf="ticket.code != 'Closed' && ticket.code != 'Open'"  ios="ios-time-outline" md="ios-time-outline"></ion-icon>
+						<!-- <ion-icon  ios="ios-time-outline" md="ios-time-outline"></ion-icon> -->
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'OPEN'"  ios="ios-clock-outline" md="ios-clock-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'APTI'"  ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'WAPA' || ticket.status == 'WAPH'"  ios="ios-clock-outline" md="ios-clock-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'RETI'"  ios="ios-close-circle-outline" md="ios-close-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'EXAP'"  ios="ios-refresh-circle-outline" md="ios-refresh-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'CLOS'"  ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'n/a'"   ios="ios-time-outline" md="ios-time-outline"></ion-icon>
 					</ion-avatar>
 					<h2>{{ticket.ticket_id}}</h2>
 					<p>Kategori : {{ticket.name}}</p>
@@ -152,24 +158,13 @@
 				</ion-item>
 			</ion-list>
 			
-
 			<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">
 				<ion-infinite-scroll-content
 					loadingSpinner="bubbles"
 					loadingText="Loading more data...">
 				</ion-infinite-scroll-content>
 			</ion-infinite-scroll>
-
-			<ion-card *ngIf="totalData === 0">
-				<img src="assets/imgs/404.png"/>
-				<ion-card-content>
-					<ion-card-title>
-						Kamu tidak mempunyai list ticket
-					</ion-card-title>
-				</ion-card-content>
-			</ion-card>
 					
-		
 		</ion-list>
 	</div>
 	

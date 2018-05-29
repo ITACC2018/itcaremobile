@@ -38,6 +38,9 @@ export class AboutPage {
 	totalData = 1;
 	totalPage = 0;
 	/**End Tracking Ticket */
+	loadingContent = true;
+	loading: any;
+	goPage: string = '';
 
 	constructor(
 		public platform: Platform,
@@ -50,6 +53,7 @@ export class AboutPage {
 		public alertCtrl  : AlertController,
 		public loadingCtrl: LoadingController
 	) {
+		this.createLoading('Please wait ..', '');
 		this.baseURI = this.CoaKategoriProvider.getBaseUri();
 		this.flexibleInput = [];
 		this.tmpSelect = {};
@@ -105,25 +109,26 @@ export class AboutPage {
 	}
 
 	ionViewDidLoad(): void {
-		this.getKategori();
+		this.getKategori(true);
 		this.pet = "puppies";
 		// this.myGroup = new FormGroup({
 		// 	firstName: new FormControl()
 		// });
 		this.setDataUser();
-		//console.log('ionViewDidLoad');
+		console.log('ionViewDidLoad');
 	}
 
 	ionViewWillEnter() : void
 	{   
+		//this.getKategori();
 		this.flexibleInput = [];
 		//this.setDataUser();
 		//console.log(this.form.controls.selectcoa.value.id, this.tmpSelect);
 		if(this.tmpSelect['value']){
 			//console.log(this.form.controls.selectcoa.value.id, this.tmpSelect['value'].id);
 			if(this.form.controls.selectcoa.value.id !== this.tmpSelect['value'].id){
-					//this.presentAlert('Ops','Silahkan pilih kategori dengan benar');
-					this.portChange(this.tmpSelect, 'ionViewWillEnter');
+				//this.presentAlert('Ops','Silahkan pilih kategori dengan benar');
+				this.portChange(this.tmpSelect, 'ionViewWillEnter');
 			}
 		}
 		console.log('ionViewWillEnter');
@@ -131,13 +136,15 @@ export class AboutPage {
 
 	ionViewDidEnter() : void
 	{
+		//this.getKategori();
 		//this.flexibleInput = [];
 		this.setDataUser();
-		//console.log('ionViewDidEnter');
+		console.log('ionViewDidEnter');
 	}
 
 	ionViewWillLeave() : void
 	{
+		//this.loading.dismiss();
 		//this.flexibleInput = [];
 		this.tmpSelect= {};
 		//this.page = 1;
@@ -145,13 +152,18 @@ export class AboutPage {
 		//this.setDataUser();
 		this.resetFields();
 		this.form.controls.selectcoa.setValue({id: "0000000000", name: "KETIK / PILIH KATEGORI"});
-		//console.log('ionViewWillLeave');
+		console.log('ionViewWillLeave');
 	}
 
 	ionViewDidLeave() : void
 	{
+		//if(this.goPage == ''){
+		//this.getKategori(false);
+		//}
+		this.loading.dismiss();
+		this.createLoading('Please wait ..', '');
 		//this.flexibleInput = [];
-		//console.log('ionViewDidLeave');
+		console.log('ionViewDidLeave');
 	}
 
 	ionViewWillUnload() : void
@@ -191,9 +203,9 @@ export class AboutPage {
 
 	getInitialAddress() {
 		return this.fb.group({
-			// "fldNPK:"                  : ["", Validators.required],
-			// fldNamaDatabase			   : [""],
-			// fldBatasanWaktu			   : [""]
+			// "fldNPK:"       : ["", Validators.required],
+			// fldNamaDatabase : [""],
+			// fldBatasanWaktu : [""]
 		});
 	}
 
@@ -202,11 +214,11 @@ export class AboutPage {
 		control.push(this.getInitialAddress());
 	}
 
-	private getKategori() {
-		let loading = this.loadingCtrl.create({
-			content: 'Please wait...'
-		});
-		loading.present();
+
+	getKategori(loading) {
+		if(loading){
+			this.loading.present();
+		}
 		return this.CoaKategoriProvider.getKategoriData().subscribe(res => {
 			if(res){
 				this.coas = res['coa'];	  		
@@ -219,8 +231,11 @@ export class AboutPage {
 					}
 					const object2 = Object.assign(arr, this.formFlex);
 					this.formFlex = object2;
-				}	
-				loading.dismiss();
+				}
+				if(loading){
+					this.loading.dismiss();
+					this.createLoading('Please wait ..', '');
+				}
 			}
 		});
 	}
@@ -276,10 +291,7 @@ export class AboutPage {
 	* @return {None}
 	*/
 	callCoa(idParam: string, event: any) {
-		let loading = this.loadingCtrl.create({
-			content: 'Please wait...'
-		});
-		loading.present();
+		this.loading.present();
 		for (var keye in this.formFlex) {
 			if (this.formFlex.hasOwnProperty(keye)) {
 				var rese = keye.substring(0, 3);
@@ -314,7 +326,6 @@ export class AboutPage {
 					}
 				}
 				//console.log(this.formFlex);
-				
 				//SET FORM LAGI
 				this.form = this.fb.group(this.formFlex);
 
@@ -332,7 +343,8 @@ export class AboutPage {
 				this.flexibleInput = res.listgetFlexibleField;
 				
 			}
-			loading.dismiss();
+			this.loading.dismiss();
+			this.createLoading('Please wait ..', '');
 		});
 	}
 
@@ -354,10 +366,7 @@ export class AboutPage {
 
 		if (valid) {
 			console.log('form submitted');
-			let loading = this.loadingCtrl.create({
-				content: 'Please wait...'
-			});
-			loading.present();
+			this.loading.present();
 			this.CoaKategoriProvider.getBaseUri();
 			let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
 			options 	: any		= value,//form.form.value,//{ "key" : "create", "name" : '', "description" : '' },
@@ -365,14 +374,16 @@ export class AboutPage {
   
 			this.http.post(url, JSON.stringify(options), headers)
 			.subscribe((data : any) => {
-			// If the request was successful notify the user
-				loading.dismiss();
+				// If the request was successful notify the user
+				this.loading.dismiss();
+				this.createLoading('Please wait ..', '');
 				this.presentAlert('Info','Ticker Berhasil Di buat ..');
-			//form.reset;
+				//form.reset;
 			},(error : any) =>{
-				loading.dismiss();
+				this.loading.dismiss();
+				this.createLoading('Please wait ..', '');
 				this.presentAlert('Ops','Terjadi Kesalahan!');
-			//form.reset;
+				//form.reset;
 			});
 		} else {
 			this.validateAllFormFields(this.form);
@@ -422,10 +433,11 @@ export class AboutPage {
 	}
 
 	getTracking() {
-		let loading = this.loadingCtrl.create({
-			content: 'Please wait...'
-		});
-		loading.present();
+		// let loading = this.loadingCtrl.create({
+		// 	content: 'Please wait...'
+		// });
+		// loading.present();
+		this.loadingContent = true;
 		const data = JSON.parse(localStorage.getItem('userData'));
 		this.CoaKategoriProvider.getTrackingTicket(this.page, data.userData.npk_crypt)
 		.subscribe((res : any) => {
@@ -434,19 +446,16 @@ export class AboutPage {
 				this.perPage = this.data.per_page;
 				this.totalData = this.data.total;
 				this.totalPage = this.data.last_page;
-				loading.dismiss();
+				//loading.dismiss();
+				this.loadingContent = false;
 			},(error : any) =>{
-				loading.dismiss();
+				//loading.dismiss();
+				this.loadingContent = false;
 				error =>  this.errorMessage = <any>error
 			});
 	}
 
 	doInfinite(infiniteScroll) {
-		let loading = this.loadingCtrl.create({
-			content: 'Please wait...'
-		});
-		loading.present();
-		
 		const data = JSON.parse(localStorage.getItem('userData'));
 		this.page = this.page+1;
 		setTimeout(() => {
@@ -459,10 +468,12 @@ export class AboutPage {
 				for(let i=0; i<this.data.data.length; i++) {
 					this.trackingList.push(this.data.data[i]);
 				}
-				loading.dismiss();
-				this.scrollToBottom();
+				//this.loading.dismiss();
+				//this.createLoading('Please wait ..', '');
+				//this.scrollToBottom();
 			},(error : any) =>{
-				loading.dismiss();
+				//this.loading.dismiss();
+				//this.createLoading('Please wait ..', '');
 				error =>  this.errorMessage = <any>error
 			});
 		  infiniteScroll.complete();
@@ -479,6 +490,8 @@ export class AboutPage {
 		this.flexibleInput = [];
 		this.page = 1;
 		if(type == 'showImage'){
+			this.loading.dismiss();
+			this.createLoading('Please wait ..', '');
 			this.getTracking();
 		}
 		
@@ -495,9 +508,40 @@ export class AboutPage {
 
 
 	pushDetailTicket(ticket) {
+		this.goPage = 'getTracking';
 		this.navCtrl.push(DetailTicketPage, {
 			idTicket: ticket.ticket_id
 		});
+	}
+
+	createLoading(text, close) {
+		this.loading = this.loadingCtrl.create({
+			content: text,
+			cssClass:'loading-itcare'
+		});
+		// if(close == false){
+		// 	this.loading.present();
+		// }
+		// if(close == true){
+		// 	this.loading.dismiss();
+		// }	
+	}
+
+
+	doRefreshCoa(refresher) {
+		setTimeout(() => {
+			this.getKategori(true);
+		  	refresher.complete();
+		}, 2000);
+	}
+
+
+	doRefreshTracking(refresher) {
+		setTimeout(() => {
+			this.page = 1;
+			this.getTracking();
+		  	refresher.complete();
+		}, 2000);
 	}
 
 

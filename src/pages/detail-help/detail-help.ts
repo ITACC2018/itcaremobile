@@ -23,6 +23,7 @@ export class DetailHelpPage {
   listSearching: any = false;
   toUser : {sender: string, toUserName: string, typeChat: string};
   sub_category_id: string;
+  loadingContent = true;
 
   constructor(
     public dataService: HelpCategoryProvider,
@@ -37,7 +38,7 @@ export class DetailHelpPage {
         toUserName:'BOT',
         typeChat:'chatbot',
       }
-      this.sub_category_id = navParams.get("sub_category_id");
+      this.sub_category_id = 'default';//navParams.get("sub_category_id");
   }
 
   ionViewDidLoad() {
@@ -71,18 +72,19 @@ export class DetailHelpPage {
   }
 
   setFilteredItems(sub_category_id, type) {
-      let loading = this.loadingCtrl.create({
-			  content: 'Please wait...'
-      });
-      if(type == 'loading'){
-        loading.present();
-      }
+      // let loading = this.loadingCtrl.create({
+			//   content: 'Please wait...'
+      // });
+      // if(type == 'loading'){
+      //   loading.present();
+      // }
       return this.dataService.getSubDataHelpCategory(sub_category_id).subscribe(res => {
         if(res){
           this.items = res;
-          if(type == 'loading'){
-            loading.dismiss();
-          }
+          this.loadingContent = false;
+          // if(type == 'loading'){
+          //   loading.dismiss();
+          // }
         }
       });
   }

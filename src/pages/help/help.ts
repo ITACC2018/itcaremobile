@@ -23,6 +23,7 @@ export class HelpPage {
     contentAnswer: any = true;
     listSearching: any = false;
     toUser : {sender: string, toUserName: string, typeChat: string};
+    
 
     constructor(public navCtrl: NavController, public dataService: HelpCategoryProvider, public loadingCtrl: LoadingController) {
         this.searchControl = new FormControl();
@@ -64,18 +65,18 @@ export class HelpPage {
     }
 
     setFilteredItems(type) {
-        let loading = this.loadingCtrl.create({
-            content: 'Please wait...'
-        });
-        if(type == 'loading'){
-            loading.present();
-        }
+        // let loading = this.loadingCtrl.create({
+        //     content: 'Please wait...'
+        // });
+        // if(type == 'loading'){
+        //     loading.present();
+        // }
         return this.dataService.getDataHelpCategory().subscribe(res => {
 			if(res){
                 this.items = res;
-                if(type == 'loading'){
-                    loading.dismiss();
-                }
+                // if(type == 'loading'){
+                //     loading.dismiss();
+                // }
             }
 		});
     }

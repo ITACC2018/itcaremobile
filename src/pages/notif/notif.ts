@@ -26,6 +26,8 @@ export class NotifPage {
 	totalData = 1;
 	totalPage = 0;
 	/**End Tracking Ticket */
+	loadingContent = true;
+
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
@@ -51,10 +53,10 @@ export class NotifPage {
 	}
 
 	getApproval() {
-		let loading = this.loadingCtrl.create({
-			content: 'Please wait...'
-		});
-		loading.present();
+		// let loading = this.loadingCtrl.create({
+		// 	content: 'Please wait...'
+		// });
+		// loading.present();
 		this.CoaKategoriProvider.getApproval(this.page, this.npkCrypt)
 		.subscribe((res : any) => {
 				this.data = res;
@@ -62,18 +64,20 @@ export class NotifPage {
 				this.perPage = this.data.per_page;
 				this.totalData = this.data.total;
 				this.totalPage = this.data.last_page;
-				loading.dismiss();
+				this.loadingContent = false;
+				//loading.dismiss();
 			},(error : any) =>{
-				loading.dismiss();
+				//loading.dismiss();
+				this.loadingContent = false;
 				error =>  this.errorMessage = <any>error
 		});
 	}
 
 	doInfinite(infiniteScroll) {
-		let loading = this.loadingCtrl.create({
-			content: 'Please wait...'
-		});
-		loading.present();
+		// let loading = this.loadingCtrl.create({
+		// 	content: 'Please wait...'
+		// });
+		// loading.present();
 		
 		
 		this.page = this.page+1;
@@ -87,10 +91,10 @@ export class NotifPage {
 				for(let i=0; i<this.data.data.length; i++) {
 					this.approvalList.push(this.data.data[i]);
 				}
-				loading.dismiss();
+				//loading.dismiss();
 				this.scrollToBottom();
 			},(error : any) =>{
-				loading.dismiss();
+				//loading.dismiss();
 				error =>  this.errorMessage = <any>error
 			});
 		  infiniteScroll.complete();
@@ -109,6 +113,14 @@ export class NotifPage {
 		this.navCtrl.push(DetailApprovalPage, {
 			idTicket: approval.ticket_id
 		});
+	}
+
+	doRefresh(refresher) {
+		setTimeout(() => {
+		  this.page = 1;
+		  this.getApproval();
+		  refresher.complete();
+		}, 2000);
 	}
 
 

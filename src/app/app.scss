@@ -40,12 +40,14 @@
 }
 
 .tabs-md .tab-button[aria-selected=true] .tab-button-icon {
-    color: #3F51B5;
+    // color: #3F51B5;
+    color: #fb9c0e;
     -webkit-transform: translate3d(0, -2px, 0);
     transform: translate3d(0, -2px, 0);
 }
 .tabs-md .tab-button[aria-selected=true] {
-    color: #3F51B5;
+    // color: #3F51B5;
+    color: #fb9c0e;
     padding: 0;
 }
 
@@ -93,3 +95,24 @@ ion-card-header.card-header.card-header-md {
 ion-card-content.card-content.card-content-md ul {
     padding-left: 17px;
 }
+
+// ion-icon {
+//     color: #fb9c0e;
+// }
+.icon-md-primary {
+    color: #fb9c0e;
+}
+
+ion-backdrop {
+    opacity: 0.2;
+}
+
+ion-loading.loading-itcare {
+    top: 113px;
+    bottom: 56px;
+}
+ion-loading.detail-approval-loading {
+    top: 56px;
+    bottom: 56px;
+}
+  

@@ -6,46 +6,51 @@
 
 
 <ion-content>
-	<ion-card>
-		<img src="assets/img/portal/astra_hut.jpg" />
-		<ion-card-content>
-			<h2 class="card-title">
-				Komitmen 60 Tahun Astra Berbagi Inspirasi Membangun Bangsa
-			</h2>
-			<p  style="color: #807d7d;font-size: 1.2rem;">Minggu 11 Maret 2018, 17:34 WIB</p>
-			<br>
-			<p style="text-align:justify">
-				JAKARTA: PT Astra International Tbk (Astra) terus berupaya berkontribusi positif terhadap kemajuan bangsa di berbagai bidang, seiring dengan cita-cita perusahaan untuk sejahtera bersama bangsa. Selama 60 tahun kehadirannya di tengah-tengah masyarakat Indonesia, Astra telah menjadi bagian dari dinamika kehidupan sosial ekonomi masyarakat Indonesia.
-			</p>
-			<p style="text-align:justify"><strong>Portfolio Roadmap</strong></p>
-			<p style="text-align:justify">
-				Seiring dengan berkembangnya ekonomi Indonesia, Astra selalu berupaya untuk senantiasa memberikan yang terbaik di setiap bidang usaha. Saat ini Astra memiliki 208 perusahaan dan melayani lebih dari 10 juta konsumen atau pelanggan Grup Astra setiap tahunnya. Komitmen untuk terus menghasilkan produk berkualitas membuat Astra terus berkembang dengan memasuki Divisi Properti di tahun 2016, sehingga saat ini perusahaan memiliki 7 lini bisnis, yaitu Otomotif; Jasa Keuangan; Alat Berat dan Pertambangan; Agribisnis; Teknologi Informasi; Infrastruktur, Logistik dan Lainnya; dan Properti.
-			</p>
-			
-		</ion-card-content>
-		<ion-item>
-			<button ion-button round color="light"><ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> </button>
-			<button ion-button round color="light"><ion-icon ios="ios-thumbs-down" md="md-thumbs-down"></ion-icon> </button>
-		</ion-item>
-		<!-- <ion-row no-padding>
-			<ion-col>
-				<button ion-button clear small color="danger" icon-left (click)="favorite(card)">
-					<ion-icon name='star'></ion-icon>
-					Favorite
-				</button>
-			</ion-col>
-			<ion-col text-center>
-				<button ion-button clear small color="danger" icon-left (click)="listen(card)">
-					<ion-icon name='musical-notes'></ion-icon>
-					Listen
-				</button>
-			</ion-col>
-			<ion-col text-right>
-				<button ion-button clear small color="danger" icon-left (click)="share(card)">
-					<ion-icon name='share-alt'></ion-icon>
-					Share
-				</button>
-			</ion-col>
-		</ion-row> -->
-	</ion-card>
+
+	<div *ngIf="loading == true">
+		<ion-card>
+			<ghost-loading class="img square-xl isLoading">
+				<img src="#" imageViewer/>
+			</ghost-loading>
+			<ion-card-content>
+				<h2 class="card-title">{{idTitle.title}}</h2>
+				<br>
+				<br>
+				<ghost-loading class="xl isLoading"></ghost-loading>
+
+				<ghost-loading class="paragraph isLoading"></ghost-loading>
+				<ghost-loading class="paragraph isLoading"></ghost-loading>
+				<br>
+				<ghost-loading class="paragraph isLoading"></ghost-loading>
+				<ghost-loading class="paragraph isLoading"></ghost-loading>
+				
+			</ion-card-content>
+			<ion-item>
+				<button ion-button round color="light"><ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> </button>
+				<button ion-button round color="light"><ion-icon ios="ios-thumbs-down" md="md-thumbs-down"></ion-icon> </button>
+			</ion-item>
+		</ion-card>
+	</div>
+	
+	<div *ngIf="loading == false">
+		<div  *ngFor="let itemBlog of detailBlog;">
+			<ion-card>
+					<img src="{{itemBlog.image_url}}" imageViewer/>
+				<ion-card-content>
+						<h2 class="card-title">
+							{{itemBlog.title}}
+						</h2>
+						<p  style="color: #807d7d;font-size: 1.2rem;">{{itemBlog.created_at}}</p>
+						<br>
+						<div [innerHTML]="itemBlog.post_body"></div>
+					
+				</ion-card-content>
+				<ion-item>
+					<button ion-button round color="light"><ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> </button>
+					<button ion-button round color="light"><ion-icon ios="ios-thumbs-down" md="md-thumbs-down"></ion-icon> </button>
+				</ion-item>
+			</ion-card>
+		</div>
+	</div>
+
 </ion-content>

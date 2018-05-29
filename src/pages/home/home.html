@@ -1,54 +1,130 @@
 <ion-header class="title-centered">
-  <ion-navbar>
-    <ion-title>Lensa ACC</ion-title>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar>
+      <ion-title>Lensa ACC</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding class="card-background-page">
+  
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="ios">
+          </ion-refresher-content>
+        </ion-refresher>
 
-<ion-content padding class="card-background-page">
-   
-      <ion-list>
-        <ion-card (click)="getContentAcc()">
-          <img src="assets/img/portal/astra.jpg"/>
-          <ion-card-content>
-            <ion-card-title>
-              Inspirasi 60 tahun astra
-            </ion-card-title>
-            <p>
-              Minggu 11 Maret 2018, 17:34 WIB
-            </p>
-          </ion-card-content>
-        </ion-card>
-        <ion-item (click)="getContentAcc()">
-          <ion-thumbnail item-start>
-            <img src="assets/img/portal/astra_gift.jpeg">
-          </ion-thumbnail>
-          <h2>Gift Policy - Corporate Compliance Communication</h2>
-          <p>Minggu 11 Maret 2018, 17:34 WIB</p>
-        </ion-item>
-        <ion-item (click)="getContentAcc()">
-          <ion-thumbnail item-start>
-            <img src="assets/img/portal/astra_sehat.jpg">
-          </ion-thumbnail>
-          <h2>12 Indikator keluarga astra sehat </h2>
-          <p>Minggu 11 Maret 2018, 17:34 WIB</p>
-        </ion-item>
-        <ion-item (click)="getContentAcc()">
-          <ion-thumbnail item-start>
-            <img src="assets/img/portal/cso.jpg">
-          </ion-thumbnail>
-          <h2>ACC WIN 2018 - Cso of the month</h2>
-          <p>Minggu 11 Maret 2018, 17:34 WIB</p>
-        </ion-item>
-        <ion-item (click)="getContentAcc()">
-          <ion-thumbnail item-start>
-            <img src="assets/img/portal/iso.jpg">
-          </ion-thumbnail>
-          <h2>ISO renewal 2018, 2 hari lagi</h2>
-          <p>Minggu 11 Maret 2018, 17:34 WIB</p>
-        </ion-item>
+        
+      <ion-list *ngIf="loading == true">
+          <div>
+              <ion-card>
+                  <ghost-loading class="img square isLoading">
+                      <img src=""/>
+                  </ghost-loading>
+                  <ion-card-content>
+                    <ion-card-title>
+                        <ghost-loading class="xl isLoading">
+                          wkwkwkww
+                        </ghost-loading>
+                    </ion-card-title>
+                    <ghost-loading class="xl isLoading">
+                      <p>wkwkwkwkw</p>
+                    </ghost-loading>
+                  </ion-card-content>
+              </ion-card>
+    
+              <ion-item>
+                  <ion-thumbnail item-start>
+                      <ghost-loading class="img square-sm isLoading"> 
+                        <img src="">
+                      </ghost-loading>
+                  </ion-thumbnail>
+                  <ghost-loading class="paragraph isLoading">
+                    <h2>wkwkwkww</h2>
+                    <p>wkwkwkwkw</p>
+                    <p>wkwkwkw</p>
+                  </ghost-loading>
+              </ion-item>
+              <ion-item>
+                  <ion-thumbnail item-start>
+                      <ghost-loading class="img square-sm isLoading"> 
+                        <img src="">
+                      </ghost-loading>
+                  </ion-thumbnail>
+                  <ghost-loading class="paragraph isLoading">
+                    <h2>wkwkwkww</h2>
+                    <p>wkwkwkwkw</p>
+                    <p>wkwkwkw</p>
+                  </ghost-loading>
+              </ion-item>
+              <ion-item>
+                  <ion-thumbnail item-start>
+                      <ghost-loading class="img square-sm isLoading"> 
+                        <img src="">
+                      </ghost-loading>
+                  </ion-thumbnail>
+                  <ghost-loading class="paragraph isLoading">
+                    <h2>wkwkwkww</h2>
+                    <p>wkwkwkwkw</p>
+                    <p>wkwkwkw</p>
+                  </ghost-loading>
+              </ion-item>
+              <ion-item>
+                  <ion-thumbnail item-start>
+                      <ghost-loading class="img square-sm isLoading"> 
+                        <img src="">
+                      </ghost-loading>
+                  </ion-thumbnail>
+                  <ghost-loading class="paragraph isLoading">
+                    <h2>wkwkwkww</h2>
+                    <p>wkwkwkwkw</p>
+                    <p>wkwkwkw</p>
+                  </ghost-loading>
+              </ion-item>
+              <ion-item>
+                  <ion-thumbnail item-start>
+                      <ghost-loading class="img square-sm isLoading"> 
+                        <img src="">
+                      </ghost-loading>
+                  </ion-thumbnail>
+                  <ghost-loading class="paragraph isLoading">
+                    <h2>wkwkwkww</h2>
+                    <p>wkwkwkwkw</p>
+                    <p>wkwkwkw</p>
+                  </ghost-loading>
+              </ion-item>
+          </div>
       </ion-list>
      
-        
-      
-    
-</ion-content>
+      <ion-list *ngIf="loading == false">
+        <div *ngFor="let itemBlog of blogsList; let i = index" [attr.data-index]="i">
+            <ion-card *ngIf="i == 0" (click)="getContentAcc(itemBlog)">
+                <!-- <img src="{{itemBlog.image_url}}"/> -->
+                <img-loader src="{{itemBlog.image_url}}" useImg></img-loader>
+                <ion-card-content>
+                  <ion-card-title>
+                        {{itemBlog.title}}
+                  </ion-card-title>
+                  <p>{{itemBlog.created_at}}</p>
+                </ion-card-content>
+            </ion-card>
+  
+            <ion-item *ngIf="i > 0" (click)="getContentAcc(itemBlog)">
+                <ion-thumbnail item-start>
+                  <!-- <img src="{{itemBlog.image_url}}"> -->
+                  <img-loader src="{{itemBlog.image_url}}" useImg></img-loader>
+                </ion-thumbnail>
+                <h2>{{itemBlog.title}}</h2>
+                <p>{{itemBlog.created_at}}</p>
+                <p>{{itemBlog.post_body}}</p>
+            </ion-item>
+        </div>
+        <ion-item *ngIf="page == totalPage">
+            <p style="text-align: center;">no more records</p>
+        </ion-item>
+      </ion-list>
+  
+      <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())" *ngIf="page < totalPage">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+  </ion-content>

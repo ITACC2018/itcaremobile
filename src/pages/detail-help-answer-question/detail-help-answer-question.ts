@@ -29,6 +29,7 @@ export class DetailHelpAnswerQuestionPage {
   id: string;
   question: string = '';
   answer: string = '';
+  loadingContent = true;
 
   constructor(
     public dataService: HelpCategoryProvider,
@@ -76,19 +77,23 @@ export class DetailHelpAnswerQuestionPage {
   }
 
   setFilteredItems(id, type) {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    if(type == 'loading'){
-      loading.present();
-    }
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...'
+    // });
+    // if(type == 'loading'){
+    //   loading.present();
+    // }
+    this.contentAnswer = false;
     return this.dataService.getAnswerQuestionHelpCategory(id).subscribe(res => {
       if(res){        
         this.question = res[0].question_category;
         this.answer = res[0].text_label;
-        if(type == 'loading'){
-          loading.dismiss();
-        }       
+        this.loadingContent = false;
+        this.contentAnswer = true;
+
+        // if(type == 'loading'){
+        //   loading.dismiss();
+        // }       
       }
     });
 }

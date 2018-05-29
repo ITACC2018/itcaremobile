@@ -7,10 +7,14 @@
 
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+  <ion-searchbar placeholder="Search for information here" [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
 
   <div *ngIf="searching" class="spinner-container">
       <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="loadingContent" class="spinner-container">
+      <ion-spinner name="ios"></ion-spinner>
   </div>
 
   <ion-list *ngIf="contentAnswer">

@@ -1,8 +1,14 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { Network } from '@ionic-native/network';
+import { HttpClientModule } from "@angular/common/http";
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen'
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 //page
 import { WelcomePage } from '../pages/welcome/welcome';
@@ -23,12 +29,9 @@ import { DetailHelpAnswerPage } from '../pages/detail-help-answer/detail-help-an
 import { DetailHelpAnswerQuestionPage } from '../pages/detail-help-answer-question/detail-help-answer-question';
 //end-page
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { LinkyModule } from 'angular-linky';
 import { MomentModule } from 'angular2-moment';
 import { EmojiProvider } from '../providers/emoji';
-import { HttpClientModule } from "@angular/common/http";
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { BotmanProvider } from '../providers/botman/botman';
 import { CoaKategoriProvider } from '../providers/coa-kategori/coa-kategori';
@@ -40,6 +43,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { SelectSearchableModule } from 'ionic-select-searchable';
 import { HelpCategoryProvider } from '../providers/help-category/help-category';
+import { BlogsBlogsProvider } from '../providers/blogs-blogs/blogs-blogs';
+import { GhostProvider } from '../providers/ghost/ghost';
+import { ComponentsModule } from '../components/components.module';
 
 //// Initialize Firebase
  //https://github.com/angular/angularfire2/blob/master/docs/ionic/v3.md
@@ -78,6 +84,7 @@ var firebaseConfig = {
 		HttpClientModule,
 		LinkyModule,
 		MomentModule,
+		ComponentsModule,
 		IonicModule.forRoot(MyApp, {
 			iconMode: 'ios',
 			modalEnter: 'modal-slide-in',
@@ -89,7 +96,9 @@ var firebaseConfig = {
 		AngularFireDatabaseModule,
 		AngularFireAuthModule,
 		ChatModule,
-		SelectSearchableModule
+		SelectSearchableModule,
+		IonicImageViewerModule,
+		IonicImageLoader.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -121,7 +130,10 @@ var firebaseConfig = {
 		BotmanProvider,
 		CoaKategoriProvider,
 		ToastService,
-    HelpCategoryProvider
+		Network,
+		HelpCategoryProvider,
+		BlogsBlogsProvider,
+		GhostProvider
   ]
 })
 export class AppModule {}
