@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Content } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, Content } from 'ionic-angular';
 import { CoaKategoriProvider } from '../../providers/coa-kategori/coa-kategori';
 import { DetailApprovalPage } from '../detail-approval/detail-approval';
 /**
@@ -9,7 +9,7 @@ import { DetailApprovalPage } from '../detail-approval/detail-approval';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-notif',
   templateUrl: 'notif.html',
@@ -92,7 +92,7 @@ export class NotifPage {
 					this.approvalList.push(this.data.data[i]);
 				}
 				//loading.dismiss();
-				this.scrollToBottom();
+				//this.scrollToBottom();
 			},(error : any) =>{
 				//loading.dismiss();
 				error =>  this.errorMessage = <any>error

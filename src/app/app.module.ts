@@ -9,6 +9,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { IonicImageLoader } from 'ionic-image-loader';
+import { FCM } from '@ionic-native/fcm';
 
 //page
 import { WelcomePage } from '../pages/welcome/welcome';
@@ -38,6 +39,7 @@ import { CoaKategoriProvider } from '../providers/coa-kategori/coa-kategori';
 import { ToastService } from '../providers/util/toast.service';
 
 import { ChatModule } from '../pages/chat/chat.module'; 
+import { AboutPageModule } from '../pages/about/about.module'; 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -61,7 +63,7 @@ var firebaseConfig = {
 @NgModule({
   declarations: [
 		MyApp,
-		AboutPage,
+		//AboutPage,
 		ContactPage,
 		WelcomePage,
 		HomePage,
@@ -96,6 +98,7 @@ var firebaseConfig = {
 		AngularFireDatabaseModule,
 		AngularFireAuthModule,
 		ChatModule,
+		AboutPageModule,
 		SelectSearchableModule,
 		IonicImageViewerModule,
 		IonicImageLoader.forRoot()
@@ -133,7 +136,8 @@ var firebaseConfig = {
 		Network,
 		HelpCategoryProvider,
 		BlogsBlogsProvider,
-		GhostProvider
+		GhostProvider,
+		FCM
   ]
 })
 export class AppModule {}

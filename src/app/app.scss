@@ -41,13 +41,13 @@
 
 .tabs-md .tab-button[aria-selected=true] .tab-button-icon {
     // color: #3F51B5;
-    color: #fb9c0e;
+    color: #3F51B5;
     -webkit-transform: translate3d(0, -2px, 0);
     transform: translate3d(0, -2px, 0);
 }
 .tabs-md .tab-button[aria-selected=true] {
     // color: #3F51B5;
-    color: #fb9c0e;
+    color: #3F51B5;
     padding: 0;
 }
 
@@ -100,7 +100,7 @@ ion-card-content.card-content.card-content-md ul {
 //     color: #fb9c0e;
 // }
 .icon-md-primary {
-    color: #fb9c0e;
+    color: #3F51B5;
 }
 
 ion-backdrop {
@@ -115,4 +115,14 @@ ion-loading.detail-approval-loading {
     top: 56px;
     bottom: 56px;
 }
-  
+ion-content.content-md[padding] .scroll-content {
+	padding-bottom: 16px !important;
+}
+
+ion-content.content-md:not([padding]) .scroll-content {
+	padding-bottom: 0 !important;
+}
+
+button.select-searchable-item.item.item-block.item-md {
+    font-size: 1.1rem;
+}

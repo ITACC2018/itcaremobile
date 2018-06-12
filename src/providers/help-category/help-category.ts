@@ -8,7 +8,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HelpCategoryProvider {
 
-  baseURI: string  = "http://itcmobilebot.local/api/";
+  //baseURI: string  = "http://itcmobilebot.local/api/";
+  baseURI: string  = 'http://8448b311.ngrok.io/api/';
   helpItems: any;
   helpItemsCategory: any;
   

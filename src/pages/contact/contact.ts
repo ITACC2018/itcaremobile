@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, AlertController, NavController  } from 'ionic-angular';
+import { AlertController, NavController  } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Chat } from '../chat/chat';
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'

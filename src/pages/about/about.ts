@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, NavController, NavParams, ToastController, AlertController, LoadingController, Content } from 'ionic-angular';
-import { SelectSearchable } from 'ionic-select-searchable';
+import { SelectSearchableComponent  } from 'ionic-select-searchable';
 import { Coa, CoaKategoriProvider } from '../../providers/coa-kategori/coa-kategori';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -248,7 +248,7 @@ export class AboutPage {
 	* @param event 			{any} 			Name value from form field
 	* @return {None}
 	*/
-	portChange(event: { component: SelectSearchable, value: any }, type: string) {		
+	portChange(event: { component: SelectSearchableComponent , value: any }, type: string) {		
 		let idParam = '';
 		if(type == 'portChange'){ idParam = event.value.id;}
 		if(type == 'ionViewWillEnter'){ idParam = event['id'];}	

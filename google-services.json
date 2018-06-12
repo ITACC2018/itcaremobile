@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "365696269200",
+    "firebase_url": "https://it-acc-c1970.firebaseio.com",
+    "project_id": "it-acc-c1970",
+    "storage_bucket": "it-acc-c1970.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365696269200:android:205ef5c4ab509be8",
+        "android_client_info": {
+          "package_name": "com.itcaremobile.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "365696269200-cf3p8ogb70eqpgqc62gm7a33a2psr8qf.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "365696269200-cf3p8ogb70eqpgqc62gm7a33a2psr8qf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADMnjJFesMx4L-Wen32fE7KxzUFf579nc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

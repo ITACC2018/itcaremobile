@@ -129,14 +129,14 @@
 				<ion-spinner name="ios"></ion-spinner>
 			</div>
 
-			<ion-card *ngIf="totalData === 0 && loadingContent === false">
+			<!-- <ion-card *ngIf="totalData === 0 && loadingContent === false">
 				<img-loader src="assets/img/etc/404.png" useImg></img-loader>
 				<ion-card-content>
 					<ion-card-title>
 						Kamu tidak mempunyai list ticket
 					</ion-card-title>
 				</ion-card-content>
-			</ion-card>
+			</ion-card> -->
 
 			<ion-list *ngIf="loadingContent === false">
 				<ion-item *ngFor="let ticket of trackingList" (click)="pushDetailTicket(ticket)">

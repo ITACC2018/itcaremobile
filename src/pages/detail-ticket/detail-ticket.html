@@ -29,14 +29,14 @@
 					<ion-icon  class="icon-itcare" ios="ios-list-box-outline" md="ios-list-box-outline"></ion-icon>
 				</ion-avatar>
 				<h2>{{idTicket}}</h2>
-				<p>Category : {{detailTicket?.category}}</p>
-				<p>Detail Category : {{detailTicket?.sub_category}}</p>
-				<p>Detail Category : {{detailTicket?.sub_sub_category}}</p>
-				<p>Detail Category : {{detailTicket?.sub_sub_sub_category}}</p>
-				<p>description : {{detailTicket?.description}}</p>
-				<p>Celler : {{detailTicket?.request_by}}</p>
-				<p>Celler Phone : {{detailTicket?.phone_number}}</p>
-				<p>Extension : {{detailTicket?.extension}}</p>
+				<p><span>Category :</span> {{detailTicket?.category}}</p>
+				<p><span>Detail Category :</span> {{detailTicket?.sub_category}}</p>
+				<p><span>Detail Category :</span> {{detailTicket?.sub_sub_category}}</p>
+				<p><span>Detail Category :</span> {{detailTicket?.sub_sub_sub_category}}</p>
+				<p style="white-space: normal; word-break: break-all;"><span>Description :</span> {{detailTicket?.description}}</p>
+				<p><span>Celler :</span> {{detailTicket?.request_by}}</p>
+				<p><span>Celler Phone :</span> {{detailTicket?.phone_number}}</p>
+				<p><span>Extension :</span> {{detailTicket?.extension}}</p>
 			</ion-item>
 		</ion-list>
 
@@ -64,9 +64,9 @@
 					<ion-icon class="icon-itcare" *ngIf="approval.status == 'n/a'"   ios="ios-time-outline" md="ios-time-outline"></ion-icon>
 				</ion-avatar>
 				<h2>{{approval?.pic_approval}} - {{approval?.customer_name}}</h2>
-				<p>Status : {{approval?.code}}</p>
-				<p>Response : {{approval?.response_time}}</p>
-				<p *ngIf="approval?.response_description !== null">Note : {{approval?.response_description}}</p>
+				<p><span>Status :</span> {{approval?.code}}</p>
+				<p style="white-space: normal; word-break: break-all;"><span>Response :</span> {{approval?.response_time}}</p>
+				<p style="white-space: normal; word-break: break-all;" *ngIf="approval?.response_description !== null"><span>Note :</span> {{approval?.response_description}}</p>
 			</ion-item>
 		</ion-list>  
 	</div>

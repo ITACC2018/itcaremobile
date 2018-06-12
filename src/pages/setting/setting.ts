@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, App, NavController, LoadingController } from 'ionic-angular';
+import { App, NavController, LoadingController } from 'ionic-angular';
 import { ToastService } from '../../providers/util/toast.service';
 
 /**
@@ -9,7 +9,7 @@ import { ToastService } from '../../providers/util/toast.service';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-setting',
   templateUrl: 'setting.html',

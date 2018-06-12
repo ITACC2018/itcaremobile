@@ -14,7 +14,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class BlogsBlogsProvider {
 
-  baseURI: string  = "http://itcmobilebot.local/api/";
+	//baseURI: string  = "http://itcmobilebot.local/api/";
+	baseURI: string  = 'http://8448b311.ngrok.io/api/';
 
   constructor(public http: Http) {
   }

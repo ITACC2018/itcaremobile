@@ -11,8 +11,8 @@ export class Coa {
 
 @Injectable()
 export class CoaKategoriProvider {
-	//baseURI: string  = "https://5558e4a3.ap.ngrok.io/api/";
-	baseURI: string  = "http://itcmobilebot.local/api/";
+	baseURI: string  = 'http://8448b311.ngrok.io/api/';
+	//baseURI: string  = "http://itcmobilebot.local/api/";
 
 	
 	constructor(public http: Http) {

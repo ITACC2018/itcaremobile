@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Chat } from '../chat/chat';
 import { HelpCategoryProvider } from '../../providers/help-category/help-category';
 import { DetailHelpAnswerPage } from '../detail-help-answer/detail-help-answer';
 import { DetailHelpAnswerQuestionPage } from '../detail-help-answer-question/detail-help-answer-question';
 import 'rxjs/add/operator/debounceTime';
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-detail-help',
   templateUrl: 'detail-help.html',

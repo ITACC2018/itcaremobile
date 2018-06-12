@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { CoaKategoriProvider } from '../../providers/coa-kategori/coa-kategori';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-detail-approval',
   templateUrl: 'detail-approval.html',
@@ -104,7 +104,7 @@ export class DetailApprovalPage {
 			options 	: any		= value,//form.form.value,//{ "key" : "create", "name" : '', "description" : '' },
 			url       : any   = this.baseURI + "updateticket";
 
-			this.http.post(url, JSON.stringify(options), headers)
+			this.http.post(url, JSON.stringify(options), {headers, responseType: 'text'})
 			.subscribe((data : any) => {
 				// If the request was successful notify the user
 				this.loading.dismiss();
@@ -112,7 +112,7 @@ export class DetailApprovalPage {
 				//form.reset;
 			},(error : any) =>{
 				this.loading.dismiss();
-				this.presentAlert('Ops','Terjadi Kesalahan!');
+				this.presentAlert('Ops', 'Terjadi Kesalahan');
 				//form.reset;
 			});
 

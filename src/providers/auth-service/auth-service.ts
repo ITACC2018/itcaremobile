@@ -10,8 +10,8 @@ import 'rxjs/add/operator/map';
   and Angular DI.
 */
 
-let apiUrl = 'http://itcmobilebot.local/api/';
-//let apiUrl = 'https://5558e4a3.ap.ngrok.io/api/';
+//let apiUrl = 'http://itcmobilebot.local/api/';
+let apiUrl = 'http://8448b311.ngrok.io/api/';
 
 
 @Injectable()

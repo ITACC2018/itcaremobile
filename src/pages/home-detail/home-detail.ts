@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { BlogsBlogsProvider } from '../../providers/blogs-blogs/blogs-blogs';
 import { GhostProvider } from '../../providers/ghost/ghost';
 
@@ -10,7 +10,7 @@ import { GhostProvider } from '../../providers/ghost/ghost';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-home-detail',
   templateUrl: 'home-detail.html',

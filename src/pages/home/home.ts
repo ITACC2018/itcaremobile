@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, Platform, /*LoadingController,*/ Content, ToastController  } from "ionic-angular";
+import { NavController, Platform, /*LoadingController,*/ Content, ToastController  } from "ionic-angular";
 //import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomeDetailPage } from '../home-detail/home-detail';
 import { BlogsBlogsProvider } from '../../providers/blogs-blogs/blogs-blogs';
@@ -7,7 +7,7 @@ import { GhostProvider } from '../../providers/ghost/ghost';
 import { Network } from '@ionic-native/network';
 import {ImageLoaderConfig } from "ionic-image-loader";
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

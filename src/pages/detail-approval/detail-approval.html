@@ -19,10 +19,10 @@
             <ion-icon  class="icon-itcare" ios="ios-list-box-outline" md="ios-list-box-outline"></ion-icon>
           </ion-avatar>
           <h2>{{idTicket}}</h2>
-          <p>Category : {{detailTicket?.category}}</p>
-          <p>Detail Category : {{detailTicket?.sub_category}}</p>
-          <p>Detail Category : {{detailTicket?.sub_sub_category}}</p>
-          <p>Detail Category : {{detailTicket?.sub_sub_sub_category}}</p>
+          <p><span>Category :</span> {{detailTicket?.category}}</p>
+          <p><span>Detail Category :</span> {{detailTicket?.sub_category}}</p>
+          <p><span>Detail Category :</span> {{detailTicket?.sub_sub_category}}</p>
+          <p><span>Detail Category :</span> {{detailTicket?.sub_sub_sub_category}}</p>
           <div *ngFor="let flexible of flexibleInput">
             <p>{{flexible?.label_name}} : {{flexible?.content}}</p>
           </div>
@@ -53,9 +53,9 @@
 						<ion-icon class="icon-itcare" *ngIf="approval.status == 'n/a'"   ios="ios-time-outline" md="ios-time-outline"></ion-icon>
         </ion-avatar>
         <h2>{{approval?.pic_approval}} - {{approval?.customer_name}}</h2>
-        <p>Status : {{approval?.status}}</p>
-        <p>Response Time at : {{approval?.response_time}}</p>
-        <p *ngIf="approval?.response_description !== null">Note : {{approval?.response_description}}</p>
+        <p><span>Status :</span> {{approval?.status}}</p>
+        <p><span>Response Time at :</span> {{approval?.response_time}}</p>
+        <p *ngIf="approval?.response_description !== null"><span>Note :</span> {{approval?.response_description}}</p>
       </ion-item>
     </ion-list> 
 
