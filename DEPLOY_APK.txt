@@ -1,11 +1,12 @@
 mobileticketingacc12345
-CHECK IONIC
 1. ionic info
 2. npm run ionic:serve
 3. ngrok http -host-header=rewrite itcmobilebot.local:80
+
 4. Google Server API Key: AAAAVSUyO5A:APA91bHC34nIYC-eyewp5m1EA-NET8UL3txksDPNrXuSAtemqlXdqp_uRwLa_bo5CiU0gLKbCYsIvX1EmkmhTvWOBppGsU5RrPYfISdQCs5Gsh_keGkE84gCeO8H5Vn2pp9kCFwUddvB
 5. Google Project Number: 365696269200
 6. Your App ID: b41980db-f1dc-481e-ac79-5240ccdda204
+
 
 SETTING NPM BEHIND PROXY
 1. npm config set proxy http://172.16.5.23:8080.
@@ -45,6 +46,9 @@ INSTALL APK IN ANDROID EMULATOR
 
 EMULATOR ACSESS VIRTUALHOST
 1. emulator -avd Nexus_6P_API_26 -partition-size 128 -writable-system.
+
+EMULATOR ACSESS VIRTUALHOST
+1. emulator -avd NAME -partition-size 128 -writable-system.
 2. adb remount.
 3. adb pull /etc/hosts OR adb pull /system/etc/hosts.
 4. edit etc hosts.

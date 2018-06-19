@@ -9,7 +9,11 @@ import 'rxjs/add/operator/map';
 export class HelpCategoryProvider {
 
   //baseURI: string  = "http://itcmobilebot.local/api/";
+<<<<<<< HEAD
   baseURI: string  = 'https://08fcd1bb.ngrok.io/api/';
+=======
+  baseURI: string  = 'http://8448b311.ngrok.io/api/';
+>>>>>>> f1c8c96f1b72a54074ee668d1db1f723e6f8875c
   helpItems: any;
   helpItemsCategory: any;
   

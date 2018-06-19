@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //import { FCM } from '@ionic-native/fcm';
 
+
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 
@@ -19,6 +20,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen
     //public fcm: FCM
+
   ) {
     this.platform.ready().then(() => {
         // Okay, so the platform is ready and our plugins are available.

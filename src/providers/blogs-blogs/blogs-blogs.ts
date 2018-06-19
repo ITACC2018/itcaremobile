@@ -17,6 +17,7 @@ export class BlogsBlogsProvider {
 	//baseURI: string  = "http://itcmobilebot.local/api/";
 	baseURI: string  = 'https://08fcd1bb.ngrok.io/api/';
 
+
   constructor(public http: Http) {
   }
 

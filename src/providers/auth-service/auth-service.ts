@@ -13,7 +13,6 @@ import 'rxjs/add/operator/map';
 //let apiUrl = 'http://itcmobilebot.local/api/';
 let apiUrl = 'https://08fcd1bb.ngrok.io/api/';
 
-
 @Injectable()
 export class AuthServiceProvider {
 

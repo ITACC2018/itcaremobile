@@ -60,7 +60,10 @@ export class Chat {
 			this.user = res
 		}); 
 
+<<<<<<< HEAD
 		//set database firebase
+=======
+>>>>>>> f1c8c96f1b72a54074ee668d1db1f723e6f8875c
 		this.fbChats = this.fdb.list('/chats');
 
 		this.botChat = false;
@@ -136,7 +139,11 @@ export class Chat {
 	 * @name getMsg
 	 * @returns {Promise<ChatMessage[]>}
 	 */
+<<<<<<< HEAD
     getMsgFireBase(id){
+=======
+    private getMsgFireBase(id){
+>>>>>>> f1c8c96f1b72a54074ee668d1db1f723e6f8875c
 		return this.chatService.getMsgListFirebase(id).subscribe(res => {
 			this.msgList = res;
 			//this.scrollToBottom();
@@ -211,6 +218,10 @@ export class Chat {
 				status: 'success',
 				takeOver: 'chatbot-success'
 			};
+<<<<<<< HEAD
+=======
+			console.log(newMsg);
+>>>>>>> f1c8c96f1b72a54074ee668d1db1f723e6f8875c
 			this.pushNewMsg(newMsg);
 			this.editorMsg = '';
 
@@ -239,15 +250,23 @@ export class Chat {
 
 		if (msg.userId === userId && msg.sender === sender) {
 			this.msgList.push(msg);
+<<<<<<< HEAD
 			console.log();
 			//this.fbChats.push(msg);
+=======
+			this.fbChats.push(msg);
+>>>>>>> f1c8c96f1b72a54074ee668d1db1f723e6f8875c
 		} else if (msg.sender === userId && msg.userId === sender) {
 			//this.msgList.push(msg);
 			this.Botman.postData(msg).then((result) =>{
 				this.resposeData = result;
 				if(this.resposeData.messages[0]){
 					this.scrollToBottom();
+<<<<<<< HEAD
 					//this.fbChats.push(this.resposeData.messages[0]);
+=======
+					this.fbChats.push(this.resposeData.messages[0]);
+>>>>>>> f1c8c96f1b72a54074ee668d1db1f723e6f8875c
 					this.msgList.push(this.resposeData.messages[0]);
 					//insert into takeOver database wheen takeOver Warning
 					// if(this.resposeData.messages[0].takeOver == 'chatbot-warning'){
@@ -263,13 +282,21 @@ export class Chat {
 		//this.scrollToBottom();
 	}
 
+<<<<<<< HEAD
 	/**
+=======
+		/**
+>>>>>>> f1c8c96f1b72a54074ee668d1db1f723e6f8875c
 	 * @name pushNewMsg
 	 * @param msg
 	 */
 	pushNewMsgTakeOver(msg: ChatMessage) {
 		this.msgList.push(msg);
+<<<<<<< HEAD
 		//this.fbChats.push(msg);
+=======
+		this.fbChats.push(msg);
+>>>>>>> f1c8c96f1b72a54074ee668d1db1f723e6f8875c
 		//this.scrollToBottom();
 	}
 

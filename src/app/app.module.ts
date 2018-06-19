@@ -12,6 +12,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
 //import { FCM } from '@ionic-native/fcm';
 import { OneSignal } from '@ionic-native/onesignal';
 
+
 //page
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
@@ -140,6 +141,7 @@ var firebaseConfig = {
 		GhostProvider,
 		OneSignal
 		//FCM
+
   ]
 })
 export class AppModule {}
