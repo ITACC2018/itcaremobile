@@ -1,0 +1,74 @@
+<!--
+  Generated template for the DetailTicketPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="title-centered">
+
+  <ion-navbar>
+	<ion-title>Ticket Detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="cards-bg">
+
+	<div *ngIf="loadingStatus == false">
+		<ion-card class="cards-list-demo">
+				<ion-card-header>
+					Ticket Detail  
+				</ion-card-header>
+				<!-- https://stackoverflow.com/questions/42057594/ionic-2-cannot-read-object-property-in-view -->
+		</ion-card>
+	
+		<ion-list>
+			<ion-item>
+				<ion-avatar item-start>
+					<ion-icon  class="icon-itcare" ios="ios-list-box-outline" md="ios-list-box-outline"></ion-icon>
+				</ion-avatar>
+				<h2>{{idTicket}}</h2>
+				<p><span>Category :</span> {{detailTicket?.category}}</p>
+				<p><span>Detail Category :</span> {{detailTicket?.sub_category}}</p>
+				<p><span>Detail Category :</span> {{detailTicket?.sub_sub_category}}</p>
+				<p><span>Detail Category :</span> {{detailTicket?.sub_sub_sub_category}}</p>
+				<p style="white-space: normal; word-break: break-all;"><span>Description :</span> {{detailTicket?.description}}</p>
+				<p><span>Celler :</span> {{detailTicket?.request_by}}</p>
+				<p><span>Celler Phone :</span> {{detailTicket?.phone_number}}</p>
+				<p><span>Extension :</span> {{detailTicket?.extension}}</p>
+			</ion-item>
+		</ion-list>
+
+		<ion-card class="cards-list-demo">
+			<ion-card-header>
+				Approval List
+			</ion-card-header>
+		</ion-card>
+
+		<ion-list>
+			<ion-item *ngIf="detailApproval?.length === 0">
+				<ion-avatar item-start>
+						<ion-icon  ios="ios-time-outline" md="ios-time-outline"></ion-icon>
+				</ion-avatar>
+				<p>Please Waiting Approval </p>
+			</ion-item>
+			<ion-item *ngFor="let approval of detailApproval" >
+				<ion-avatar item-start>
+					<ion-icon class="icon-itcare" *ngIf="approval.status == 'OPEN'"  ios="ios-clock-outline" md="ios-clock-outline"></ion-icon>
+					<ion-icon class="icon-itcare" *ngIf="approval.status == 'APTI'"  ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+					<ion-icon class="icon-itcare" *ngIf="approval.status == 'WAPA' || approval.status == 'WAPH'"  ios="ios-clock-outline" md="ios-clock-outline"></ion-icon>
+					<ion-icon class="icon-itcare" *ngIf="approval.status == 'RETI'"  ios="ios-close-circle-outline" md="ios-close-circle-outline"></ion-icon>
+					<ion-icon class="icon-itcare" *ngIf="approval.status == 'EXAP'"  ios="ios-refresh-circle-outline" md="ios-refresh-circle-outline"></ion-icon>
+					<ion-icon class="icon-itcare" *ngIf="approval.status == 'CLOS' || approval.status == 'Closed'" ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+					<ion-icon class="icon-itcare" *ngIf="approval.status == 'n/a'"   ios="ios-time-outline" md="ios-time-outline"></ion-icon>
+				</ion-avatar>
+				<h2>{{approval?.pic_approval}} - {{approval?.customer_name}}</h2>
+				<p><span>Status :</span> {{approval?.code}}</p>
+				<p style="white-space: normal; word-break: break-all;"><span>Response :</span> {{approval?.response_time}}</p>
+				<p style="white-space: normal; word-break: break-all;" *ngIf="approval?.response_description !== null"><span>Note :</span> {{approval?.response_description}}</p>
+			</ion-item>
+		</ion-list>  
+	</div>
+</ion-content>
+

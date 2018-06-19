@@ -1,0 +1,92 @@
+page-detail-approval {
+    ion-card.cards-list-demo ion-card-header {
+        color: map-get($colors, primary);
+        background-color: #e0e5ff;
+    }
+    .item-md {
+        padding-left: 0px; 
+    }
+    .item-label-stacked .text-input-md, .item-label-floating .text-input-md {
+        margin-left: 0;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        width: calc(100% - 8px);
+        font-size: 12px;
+    }
+    .select-text {
+        font-size: 12px;
+    }
+    .label-md {
+         margin: 0; 
+    }
+    ion-list.list.list-md {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+    ion-item.item.item-block.item-md.item-select.item-label-stacked {
+        margin-bottom: 8px;
+    }
+    .card-header-md {
+        font-size: 1.6rem;
+        color: #222;
+        padding: 6px;
+    }
+    .list-md .button-item .item-inner {
+        border-bottom: 1px solid #f7f7fb;
+    }
+    span {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .col {
+        padding: 0px;
+    }
+    ion-item.item.item-block{
+        min-height: 2.4rem;
+    }
+    ion-item.item.item-block.item-md.has-error.has-feedback .item-inner .input-wrapper{
+        height: 17px;
+    }
+    ion-item.item.item-block.item-md.has-error.has-feedback .item-inner .input-wrapper .label-md p {
+        font-size: 10px;
+    }
+
+
+    .item-md.item-input.item-input-has-focus .item-inner, .item-md.item-input.input-has-focus .item-inner {
+        border-bottom-color: #dedede;
+        -webkit-box-shadow: inset 0 -1px 0 0 #dedede;
+        box-shadow: inset 0 -1px 0 0 #dedede;
+      }
+    
+      .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+        border-bottom-color: #dedede; 
+        -webkit-box-shadow: inset 0 0 0 0 #dedede; 
+        box-shadow: inset 0 0 0 0 #dedede; 
+      }
+    
+      .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus):last-child {
+        border-bottom-color: #dedede;
+        -webkit-box-shadow: inset 0 -1px 0 0 #dedede;
+        box-shadow: inset 0 -1px 0 0 #dedede;
+      }
+      .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+        border-bottom-color: #dedede;
+        -webkit-box-shadow: inset 0 -1px 0 0 #dedede;
+        box-shadow: inset 0 -1px 0 0 #dedede;
+      }
+    
+      .list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child, .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
+        border-bottom-color: #dedede;
+        -webkit-box-shadow: inset 0 -1px 0 0 #dedede;
+        box-shadow: inset 0 -1px 0 0 #dedede;
+    }
+
+    .icon-itcare {
+        display: inline-block;
+        font-size: 3.8em;
+        color: #8fb2d6;
+    }
+    .label-md[stacked] {
+        font-size: 1.5rem;
+    }
+}

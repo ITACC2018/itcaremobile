@@ -1,0 +1,51 @@
+
+<ion-header class="title-centered">
+  <ion-navbar>
+	<ion-title>Notifications</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="ios">
+		</ion-refresher-content>
+	</ion-refresher>
+
+	<div *ngIf="loadingContent" class="spinner-container">
+		<ion-spinner name="ios"></ion-spinner>
+	</div>
+
+	<ion-list *ngIf="loadingContent === false">
+		<ion-item *ngFor="let approval of approvalList" (click)="pushDetailApproval(approval)">
+			<ion-avatar item-start>
+				<ion-icon class="icon-itcare" *ngIf="approval.status == 'WAPA' || approval.status == 'WAPH'"  ios="ios-clock-outline" md="ios-clock-outline"></ion-icon>
+				<ion-icon class="icon-itcare" *ngIf="approval.status == 'RETI'"  ios="ios-close-circle-outline" md="ios-close-circle-outline"></ion-icon>
+				<ion-icon class="icon-itcare" *ngIf="approval.status == 'CLOS'"  ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+			</ion-avatar>
+			<h2>{{approval.ticket_id}}</h2>
+			<p>Requestor : {{approval.customer_name}}</p>
+			<p>Kategory : {{approval.sub_sub_sub_category}}</p>
+			<p>Tanggal Req  : {{approval.created_time}}</p>
+			<p>Status : {{approval.code}}</p>
+			<p>Duration : {{approval.duration}}</p>
+		</ion-item>
+	</ion-list>
+
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">
+		<ion-infinite-scroll-content
+			loadingSpinner="bubbles"
+			loadingText="Loading more data...">
+		</ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+
+	<ion-card *ngIf="totalData === 0">
+		<img-loader src="assets/img/etc/404.png" useImg></img-loader>
+		<ion-card-content>
+			<ion-card-title>
+				Kamu tidak mempunyai pesan
+			</ion-card-title>
+		</ion-card-content>
+	</ion-card>
+
+</ion-content>

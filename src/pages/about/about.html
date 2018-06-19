@@ -1,0 +1,171 @@
+<ion-header class="title-centered">
+	<ion-navbar>
+		<ion-title>IT Care </ion-title>
+	</ion-navbar>
+  
+  
+	<ion-toolbar no-border-top>
+		<ion-segment [(ngModel)]="pet">
+			<ion-segment-button value="puppies" (ionSelect)="changeTab('hideImage')">
+				Request
+			</ion-segment-button>
+			<ion-segment-button value="kittens" (ionSelect)="changeTab('showImage')">
+				Tracking
+			</ion-segment-button>
+		</ion-segment>
+	</ion-toolbar>
+</ion-header>
+  
+<ion-content >
+	<div [ngSwitch]="pet">
+		<ion-refresher *ngSwitchCase="'puppies'" (ionRefresh)="doRefreshCoa($event)">
+				<ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="ios">
+				</ion-refresher-content>
+		</ion-refresher>
+	
+		<ion-refresher *ngSwitchCase="'kittens'" (ionRefresh)="doRefreshTracking($event)" class="refresher-container">
+			<ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="ios">
+			</ion-refresher-content>
+		</ion-refresher>
+		<ion-list *ngSwitchCase="'puppies'">
+			<form [formGroup]="form" (ngSubmit)="saveTicket(form)">
+				<ion-item-group>
+					<ion-label color="primary" stacked>Kategori</ion-label>
+					<ion-item class="select-searchable">
+						<select-searchable
+							itemValueField="id"
+							itemTextField="name"
+							formControlName="selectcoa"
+							[items]="coas"
+							[canSearch]="true"
+							(onChange)="portChange($event, 'portChange')">
+						</select-searchable>
+					</ion-item>
+				</ion-item-group>
+				<ion-item *ngIf="isFieldValid('selectcoa')" no-lines [ngClass]="displayFieldCss('selectcoa')">
+						<p>Please input pic</p> 
+				</ion-item>
+				
+
+				<div style="display:none">
+					<input [(ngModel)]="tmpSelect" [ngModelOptions]="{standalone: true}">
+					<ion-input type="text" formControlName="sourceID" value="" ></ion-input>
+					<ion-input type="text" formControlName="isTicket" value="" ></ion-input>
+					<ion-input type="text" formControlName="groupid" value="" ></ion-input>
+					<ion-input type="text" formControlName="inputpicapproval"></ion-input>
+					<ion-input type="text" formControlName="inputpicbucket"></ion-input>
+					<ion-input type="text" formControlName="inputpicbcdetail"></ion-input>
+					<ion-input type="text" formControlName="isapproval"></ion-input>
+					<ion-input type="text" formControlName="inputpicbackdesk"></ion-input>
+					<ion-input type="text" formControlName="inputPIR" value="" ></ion-input>
+					<ion-input type="text" formControlName="isRroh" value="" ></ion-input>
+					<ion-input type="text" formControlName="inputnpk"></ion-input>
+					<ion-input type="text" formControlName="inputbranch"></ion-input>
+					<ion-input type="text" formControlName="inputext" value="" ></ion-input>
+					<ion-input type="text" formControlName="inputemail"></ion-input>
+					<ion-input type="text" formControlName="inputposition"></ion-input>
+					<ion-input type="text" formControlName="optsource" value="" ></ion-input>
+					<ion-input type="text" formControlName="inputagentanswer" value="" ></ion-input>
+					<ion-input type="text" formControlName="inputcallerphone" value="" ></ion-input>
+				</div>
+			
+				<ion-item>
+					<ion-label color="primary" stacked>Approval Atasan</ion-label>
+					<ion-input type="text"  formControlName="inputapproveby" [readonly]="isReadonly"></ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-label color="primary" stacked>Approval Fungsi Terkait</ion-label>
+					<ion-input type="text" formControlName="optaddapproval" [readonly]="isReadonly"></ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-label color="primary" stacked>Pic IT</ion-label>
+					<ion-input type="text"  formControlName="pic" [readonly]="isReadonly"></ion-input>
+				</ion-item>
+				<ion-item *ngIf="isFieldValid('pic')" no-lines [ngClass]="displayFieldCss('pic')">
+						<p>Please input pic</p> 
+				</ion-item>
+
+			
+
+				<ion-list-header>
+					<ion-label color="primary-button"><b>Keterangan Tambahan </b></ion-label>
+				</ion-list-header>
+
+				<ng-container *ngIf="this.flexibleInput.length > 0">
+					<div *ngFor="let att of this.flexibleInput;">
+						<ion-item [ngClass]="displayFieldCss(att.input)">
+							<ion-label color="primary" stacked>{{att.label}}</ion-label>
+							<ion-input type="text" formControlName="{{att.input}}" ngModel clearInput>{{att.input}}</ion-input>
+						</ion-item>
+						<ion-item  *ngIf="isFieldValid(att.input)" no-lines [ngClass]="displayFieldCss(att.input)">
+								<p>Please input {{att.label}}</p> 
+						</ion-item>
+					</div>
+				</ng-container>
+
+	
+				<ion-item [ngClass]="displayFieldCss('description')">
+					<ion-label color="primary" stacked>Deskripsi</ion-label>
+					<ion-textarea formControlName="description" ngModel></ion-textarea>
+				</ion-item>
+				<ion-item *ngIf="isFieldValid('description')" no-lines [ngClass]="displayFieldCss('description')">
+					<p>Please input description</p> 
+				</ion-item>
+			
+
+				<ion-item class="button-item">
+						<button ion-button block color="primary-button">
+						Save
+						</button>
+				</ion-item>
+			</form>
+		</ion-list>
+
+		<ion-list *ngSwitchCase="'kittens'" > 	
+
+			<div *ngIf="loadingContent" class="spinner-container">
+				<ion-spinner name="ios"></ion-spinner>
+			</div>
+
+			<!-- <ion-card *ngIf="totalData === 0 && loadingContent === false">
+				<img-loader src="assets/img/etc/404.png" useImg></img-loader>
+				<ion-card-content>
+					<ion-card-title>
+						Kamu tidak mempunyai list ticket
+					</ion-card-title>
+				</ion-card-content>
+			</ion-card> -->
+
+			<ion-list *ngIf="loadingContent === false">
+				<ion-item *ngFor="let ticket of trackingList" (click)="pushDetailTicket(ticket)">
+					<ion-avatar item-start>
+						<!-- <ion-icon  ios="ios-time-outline" md="ios-time-outline"></ion-icon> -->
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'OPEN'"  ios="ios-clock-outline" md="ios-clock-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'APTI'"  ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'WAPA' || ticket.status == 'WAPH'"  ios="ios-clock-outline" md="ios-clock-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'RETI'"  ios="ios-close-circle-outline" md="ios-close-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'EXAP'"  ios="ios-refresh-circle-outline" md="ios-refresh-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'CLOS'"  ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="ticket.status == 'n/a'"   ios="ios-time-outline" md="ios-time-outline"></ion-icon>
+					</ion-avatar>
+					<h2>{{ticket.ticket_id}}</h2>
+					<p>Kategori : {{ticket.name}}</p>
+					<p>Waktu Request : {{ticket.created_time}}</p>
+					<p>Status : {{ticket.code}}</p>
+					<p>PIC IT : {{ticket.group_section}}</p>
+				</ion-item>
+			</ion-list>
+			
+			<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">
+				<ion-infinite-scroll-content
+					loadingSpinner="bubbles"
+					loadingText="Loading more data...">
+				</ion-infinite-scroll-content>
+			</ion-infinite-scroll>
+					
+		</ion-list>
+	</div>
+	
+</ion-content>

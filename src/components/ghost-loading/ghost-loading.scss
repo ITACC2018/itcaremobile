@@ -1,0 +1,108 @@
+@keyframes pulse {
+    0% {
+      background-color: rgba(color($colors, primary-button), .10);
+    }
+    50% {
+      background-color: rgba(color($colors, primary-button), .1);
+    }
+    100% {
+      background-color: rgba(color($colors, primary-button), .16);
+    }
+}
+
+ghost-loading {
+    display: inherit;
+    &.isLoading {
+        &:after {
+        display: inline-block;
+        content: '\00a0';
+        margin-bottom: 5px;
+        width: 100%;
+        border-radius: 6px;
+        animation: pulse 2s infinite;
+        animation-timing-function: ease-in-out;
+        }
+        &.ghost-loading-input {
+        &:after {
+            width: 90%;
+            height: 45px;
+        }
+        }
+        &.paragraph {
+        &:after,
+        &:before {
+            width: 100%;
+        }
+        &:before {
+            display: inline-block;
+            content: '\00a0';
+            width: 100%;
+            border-radius: 6px;
+            animation: pulse 2s infinite;
+            animation-timing-function: ease-in-out;
+            margin-bottom: 5px;
+        }
+        }
+        &.xl {
+        &:after {
+            width: 100%;
+        }
+        }
+        &.lg {
+        &:after {
+            width: 90%;
+        }
+        }
+        &.md {
+        &:after {
+            width: 50%;
+        }
+        }
+        &.sm {
+        &:after {
+            width: 25%;
+        }
+        }
+        &.xs {
+        &:after {
+            width: 20px;
+            min-width: 20px;
+        }
+        }
+    }
+    /* sort hacky with images..*/
+    &.img {
+        &.isLoading {
+        &.square {
+            &:after {
+            width: 100%;
+            height: 22rem;
+            border-radius: 0;
+            margin-bottom: 10px;
+            }
+        }
+        &.square-sm {
+            &:after {
+            width: 100%;
+            height: 8rem;
+            border-radius: 0;
+            }
+        }
+        &.square-xl {
+            &:after {
+            width: 100%;
+            height: 34rem;
+            border-radius: 0;
+            }
+        }
+        &:after {
+            width: 4rem;
+            height: 4rem;
+            margin: auto;
+            display: block;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        }
+    }
+}

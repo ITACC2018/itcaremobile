@@ -1,0 +1,40 @@
+<ion-header class="title-centered">
+		<ion-navbar>
+			<ion-title>Have a Question ?</ion-title>
+		</ion-navbar>
+	</ion-header>
+
+
+<ion-content>
+	  <ion-searchbar placeholder="Search for information here" [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+
+  	<div *ngIf="searching" class="spinner-container">
+      	<ion-spinner></ion-spinner>
+	 </div>
+	 <div *ngIf="loadingContent" class="spinner-container">
+		<ion-spinner name="ios"></ion-spinner>
+	</div>
+
+  	<ion-list *ngIf="listSearching">
+		<ion-item *ngFor="let item of items" (click)="answerFaq(item)">
+			{{item.text_label}}
+			<button (click)="answerFaq(item)" ion-button clear item-end>
+			<ion-icon name="ios-arrow-forward-outline"></ion-icon>
+			</button>
+		</ion-item>
+	</ion-list>
+	
+	<ion-card *ngIf="contentAnswer">
+		<ion-card-header>
+			<div [innerHTML]="this.question"></div>
+		</ion-card-header>
+		<ion-card-content>
+			<div [innerHTML]="this.answer"></div>
+		</ion-card-content>
+		<ion-item>
+				<button ion-button round color="light"><ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> </button>
+				<button ion-button round color="light"><ion-icon ios="ios-thumbs-down" md="md-thumbs-down"></ion-icon> </button>
+			</ion-item>
+	</ion-card>
+
+</ion-content>

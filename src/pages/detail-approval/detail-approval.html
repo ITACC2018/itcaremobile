@@ -1,0 +1,98 @@
+<ion-header class="title-centered">
+  <ion-navbar>
+	  <ion-title>Ticket Detail</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+
+  <div *ngIf="loadingStatus == false">
+    <ion-card class="cards-list-demo">
+      <ion-card-header>
+      Ticket Detail
+      </ion-card-header>
+    </ion-card>
+
+    <ion-list>
+        <ion-item>
+          <ion-avatar item-start>
+            <ion-icon  class="icon-itcare" ios="ios-list-box-outline" md="ios-list-box-outline"></ion-icon>
+          </ion-avatar>
+          <h2>{{idTicket}}</h2>
+          <p><span>Category :</span> {{detailTicket?.category}}</p>
+          <p><span>Detail Category :</span> {{detailTicket?.sub_category}}</p>
+          <p><span>Detail Category :</span> {{detailTicket?.sub_sub_category}}</p>
+          <p><span>Detail Category :</span> {{detailTicket?.sub_sub_sub_category}}</p>
+          <div *ngFor="let flexible of flexibleInput">
+            <p>{{flexible?.label_name}} : {{flexible?.content}}</p>
+          </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-card class="cards-list-demo">
+      <ion-card-header>
+        Approval List
+      </ion-card-header>
+    </ion-card>
+
+    <ion-list>
+      <ion-item *ngIf="detailApproval?.length === 0">
+        <ion-avatar item-start>
+            <ion-icon  ios="ios-time-outline" md="ios-time-outline"></ion-icon>
+        </ion-avatar>
+        <p>Please Waiting Approval </p>
+      </ion-item>
+      <ion-item *ngFor="let approval of detailApproval" >
+        <ion-avatar item-start>
+            <ion-icon class="icon-itcare" *ngIf="approval.status == 'OPEN'"  ios="ios-clock-outline" md="ios-clock-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="approval.status == 'APTI'"  ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="approval.status == 'WAPA' || approval.status == 'WAPH'"  ios="ios-clock-outline" md="ios-clock-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="approval.status == 'RETI'"  ios="ios-close-circle-outline" md="ios-close-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="approval.status == 'EXAP'"  ios="ios-refresh-circle-outline" md="ios-refresh-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="approval.status == 'CLOS'"  ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+						<ion-icon class="icon-itcare" *ngIf="approval.status == 'n/a'"   ios="ios-time-outline" md="ios-time-outline"></ion-icon>
+        </ion-avatar>
+        <h2>{{approval?.pic_approval}} - {{approval?.customer_name}}</h2>
+        <p><span>Status :</span> {{approval?.status}}</p>
+        <p><span>Response Time at :</span> {{approval?.response_time}}</p>
+        <p *ngIf="approval?.response_description !== null"><span>Note :</span> {{approval?.response_description}}</p>
+      </ion-item>
+    </ion-list> 
+
+    <ion-card class="cards-list-demo">
+        <ion-card-header>
+          Response Approval
+        </ion-card-header>
+    </ion-card>
+
+    <ion-list class="form-approval">
+      <form [formGroup]="form" (ngSubmit)="saveTicket(form)">
+          <ion-input type="hidden" formControlName="ticketID"></ion-input>
+          <ion-input type="hidden" formControlName="npkUserId"></ion-input>
+          <ion-input type="hidden" formControlName="groupId"></ion-input>
+        <ion-item>
+            <ion-label color="primary" stacked>Persetujuan :</ion-label>
+            <ion-select interface="action-sheet" formControlName="optResponse">
+              <ion-option value="" selected="true">-- Silahkan pilih --</ion-option>
+              <ion-option value="APTI">Approve Ticket</ion-option>
+              <ion-option value="EXAP">Cancel Ticket</ion-option>
+              <ion-option value="RETI">Reject Ticket</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item *ngIf="isFieldValid('optResponse')" no-lines [ngClass]="displayFieldCss('optResponse')">
+            <p>Please select Persetujuan</p> 
+        </ion-item>
+
+        <ion-item>
+          <ion-label color="primary" stacked>Note :</ion-label>
+          <ion-textarea formControlName="inputDescription"></ion-textarea>
+        </ion-item>
+        <ion-item class="button-item">
+              <button ion-button block color="primary-button">
+              Save
+              </button>
+          </ion-item>
+      </form>
+    </ion-list>
+  </div> 
+</ion-content>

@@ -1,0 +1,40 @@
+page-detail-help-answer {
+    ion-content {
+        background: linear-gradient(0deg, #eeeef1 0%, white 80%, white 100%);
+      }
+      ion-label {
+        white-space: normal;
+        font-size: 13px;
+        text-align: left;
+    }
+    ion-card-header {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        font-weight: bold;
+    }
+    .label{
+        font-size: 13px; 
+    }
+    .item-inner{
+        text-align: center;
+    }
+    .spinner-container {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .card-content-md {
+        padding: 0px;
+        line-height: 1.5;
+    }
+    .card-content-md ul{
+        margin-left: -11px;
+    }
+    .item-md {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

@@ -1,0 +1,66 @@
+CHECK IONIC
+1. ionic info
+2. npm run ionic:serve
+3. ngrok http -host-header=rewrite itcmobilebot.local:80
+4. Google Server API Key: AAAAVSUyO5A:APA91bHC34nIYC-eyewp5m1EA-NET8UL3txksDPNrXuSAtemqlXdqp_uRwLa_bo5CiU0gLKbCYsIvX1EmkmhTvWOBppGsU5RrPYfISdQCs5Gsh_keGkE84gCeO8H5Vn2pp9kCFwUddvB
+5. Google Project Number: 365696269200
+6. Your App ID: b41980db-f1dc-481e-ac79-5240ccdda204
+
+SETTING NPM BEHIND PROXY
+1. npm config set proxy http://172.16.5.23:8080.
+2. npm config set https-proxy http://172.16.5.23:8080.
+3. npm config set strict-ssl false.
+
+DELETE PROXY
+1. npm config rm proxy.
+2. npm config rm https-proxy.
+
+BUILD APK IONIC
+1. ionic cordova platform add android.
+2. keytool -genkey -v -keystore itcaremobile.keystore -alias itcaremobile -keyalg RSA -keysize 2048 -validity 1000.
+3. ionic cordova build android --prod --release.
+4. jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore itcaremobile.keystore app-release-unsigned.apk itcaremobile.
+   
+RUN EMULATOR ANDROID BY TERMINAL
+1. open cmd.
+2. cd C:\Users\15525\AppData\Local\Android\Sdk\emulator.
+3. check list avd => emulator -list-avds.
+4. and run emulator => emulator -avd NAME_AVD.
+5. if you use firebase install sdk google play service in android studio.
+
+RUN IONIC IN EMULATOR ANDROID
+   ionic cordova platform add android@6.4.0
+   cd C:\Users\15525\AppData\Local\Android\Sdk\emulator
+   emulator -avd NAME -partition-size 512 -writable-system.
+   ionic cordova run android -lc --address=localhost --target Nexus_6P_API_25. (avdnya)
+   ionic cordova run android -c -s -l --target Nexus_6P_API_25.
+   ionic emulate ios -l -c.
+   ionic run android -l -c.
+
+INSTALL APK IN ANDROID EMULATOR
+1. cd C:\Users\15525\AppData\Local\Android\Sdk\platform-tools
+2. adb install PATH_APK
+3. adb logcat
+
+EMULATOR ACSESS VIRTUALHOST
+1. emulator -avd Nexus_6P_API_26 -partition-size 128 -writable-system.
+2. adb remount.
+3. adb pull /etc/hosts OR adb pull /system/etc/hosts.
+4. edit etc hosts.
+   127.0.0.1 localhost
+   10.0.2.2 NAMEVHOST
+5. adb push hosts /etc/hosts.
+
+ADB PUSH READ-ONLY
+1. adb shell
+2. #su
+3. #mount -o rw,remount rootfs /
+4. #^D
+5. #
+6. #^D
+	OR
+1. adb reboot
+2. adb disable-verity
+3. adb reboot
+4. adb root
+5. adb remount
