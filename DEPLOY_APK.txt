@@ -1,3 +1,4 @@
+mobileticketingacc12345
 CHECK IONIC
 1. ionic info
 2. npm run ionic:serve
