@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { baseUrlNgrox } from '../../config';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -12,8 +13,7 @@ export class Coa {
 @Injectable()
 export class CoaKategoriProvider {
 	
-	baseURI: string  = 'https://08fcd1bb.ngrok.io/api/';
-	//baseURI: string  = "http://itcmobilebot.local/api/";
+	baseURI: string  = baseUrlNgrox;
 
 	constructor(public http: Http) {
 

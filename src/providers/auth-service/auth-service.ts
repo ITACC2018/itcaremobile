@@ -1,7 +1,9 @@
 //import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { baseUrlNgrox } from '../../config';
 import 'rxjs/add/operator/map';
+
 
 /*
   Generated class for the AuthServiceProvider provider.
@@ -11,7 +13,7 @@ import 'rxjs/add/operator/map';
 */
 
 //let apiUrl = 'http://itcmobilebot.local/api/';
-let apiUrl = 'https://08fcd1bb.ngrok.io/api/';
+let apiUrl = baseUrlNgrox;
 
 @Injectable()
 export class AuthServiceProvider {

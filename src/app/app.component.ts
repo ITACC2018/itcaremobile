@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //import { FCM } from '@ionic-native/fcm';
@@ -7,6 +7,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+
+import { OneSignal, OSNotificationPayload } from '@ionic-native/onesignal';
+import { isCordovaAvailable } from '../common/is-cordova-available';
+import { oneSignalAppId, sender_id } from '../config';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,7 +22,9 @@ export class MyApp {
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public menu: MenuController,
+    public splashScreen: SplashScreen,
+    public oneSignal: OneSignal
     //public fcm: FCM
 
   ) {
@@ -32,27 +38,31 @@ export class MyApp {
         }else{
           this.rootPage = LoginPage;
         }
-		//if (this.platform.is('cordova')) {
-			// FIREBASE CLOUD MESSAGING
-			// Notifications
-			/*fcm.subscribeToTopic('all');
-			fcm.getToken().then(token=>{
-				console.log(token);
-			})
-			fcm.onNotification().subscribe(data=>{
-			  if(data.wasTapped){
-				console.log("Received in background");
-			  } else {
-				console.log("Received in foreground");
-			  };
-			})
-			fcm.onTokenRefresh().subscribe(token=>{
-			  console.log(token);
-			});*/
-		//} else {
-		  // Cordova not accessible, add mock data if necessary
-		//}
-        //end notifications.
+
+
+        //ONESIGNAL NOTIFICATION.
+
+        if (isCordovaAvailable()){
+          this.oneSignal.startInit(oneSignalAppId, sender_id);
+          this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
+          this.oneSignal.handleNotificationReceived().subscribe(data => this.onPushReceived(data.payload));
+          this.oneSignal.handleNotificationOpened().subscribe(data => this.onPushOpened(data.notification.payload));
+          this.oneSignal.endInit();
+        }
+        //ENDONESIGNAL.
     });
+  }
+
+  private onPushReceived(payload: OSNotificationPayload) {
+    alert('Push recevied:' + payload.body);
+  }
+  
+  private onPushOpened(payload: OSNotificationPayload) {
+    alert('Push opened: ' + payload.body);
+  }
+
+  openPage(page) {
+    this.menu.close();
+		this.nav.setRoot(page.component);
   }
 }

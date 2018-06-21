@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { baseUrlNgrox } from '../../config';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -15,7 +16,7 @@ import 'rxjs/add/operator/map';
 export class BlogsBlogsProvider {
 
 	//baseURI: string  = "http://itcmobilebot.local/api/";
-	baseURI: string  = 'https://08fcd1bb.ngrok.io/api/';
+	baseURI: string  = baseUrlNgrox;
 
 
   constructor(public http: Http) {
